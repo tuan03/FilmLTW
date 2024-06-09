@@ -1,0 +1,75 @@
+@use "text-fonts";
+@use "colors";
+
+body {
+    padding: 0;
+    margin: 0;
+    background-color: colors.$avs-regular-bg-cl;
+}
+
+div,
+a,
+p,
+button,
+input,
+section,
+textarea {
+    font-family: text-fonts.$avs-primary-fontf;
+    font-weight: normal;
+    outline: none;
+}
+
+input,
+textarea {
+    border: none;
+}
+
+button {
+    border: none;
+    cursor: pointer;
+}
+
+i {
+    color: colors.$avs-regular-black-cl;
+    font-size: 1rem;
+}
+
+a {
+    text-decoration: none;
+    cursor: pointer;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin: 0;
+}
+
+#page-main {
+    box-sizing: border-box;
+}
+
+.dropdown-menu {
+    .dropdown-item {
+        &:active {
+            background-color: colors.$avs-primary-cl;
+            color: black;
+        }
+        &:hover {
+            background-color: #e7e7e7;
+            color: black;
+        }
+    }
+}
+
+#toast-container {
+    .toast {
+        box-shadow: none;
+        background-color: #bd362f;
+        opacity: 0.9;
+    }
+}

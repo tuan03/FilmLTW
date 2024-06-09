@@ -1,0 +1,133 @@
+#login-form .invalid-message {
+  padding-left: 10px;
+  padding: 0 10px;
+  margin-top: 4px;
+  font-size: 0.9rem;
+  color: red;
+}
+#login-form .invalid-message i {
+  font-size: 0.9rem;
+  margin-right: 5px;
+  color: red;
+}
+#login-form .form-group {
+  margin-bottom: 15px;
+}
+#login-form .form-group .input-wrapper {
+  position: relative;
+}
+#login-form .form-group .input-wrapper .password-btn {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 20px;
+  width: 20px;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+#login-form .form-group .input-wrapper .password-btn i {
+  display: flex;
+  font-size: 1.3rem;
+  color: white;
+}
+#login-form .form-group .input-wrapper .password-btn:hover {
+  transform: translateY(-50%) scale(1.2);
+}
+#login-form .form-header {
+  margin-bottom: 20px;
+}
+#login-form .form-header h2 {
+  font-size: 1.3rem;
+  font-weight: bold;
+}
+#login-form label {
+  display: block;
+  margin-bottom: 5px;
+}
+#login-form label i {
+  color: white;
+  margin-right: 10px;
+}
+#login-form input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #555;
+  border-radius: 4px;
+  background-color: #444;
+  color: #fff;
+  outline: none;
+}
+#login-form input:focus {
+  outline: 2px white solid;
+}
+#login-form .forgot-password {
+  color: #00aaff;
+  text-decoration: none;
+  font-size: 0.9em;
+}
+#login-form .forgot-password:hover {
+  text-decoration: underline;
+}
+#login-form .checkbox-group {
+  display: flex;
+  align-items: center;
+  column-gap: 10px;
+}
+#login-form .checkbox-group label {
+  margin-bottom: 0;
+}
+#login-form .checkbox-group input {
+  width: fit-content;
+}
+#login-form .btn-login {
+  width: 100%;
+  padding: 8px;
+  border: 2px #007acc solid;
+  border-radius: 4px;
+  background-color: #007acc;
+  color: #fff;
+  font-size: 1em;
+  cursor: pointer;
+  font-weight: bold;
+}
+#login-form .btn-login:hover {
+  background-color: transparent;
+  color: #007acc;
+}
+#login-form .register-group {
+  text-align: center;
+  margin-top: 15px;
+}
+#login-form .btn-register {
+  color: #000;
+  background-color: #ffdd00;
+  border: 2px #ffdd00 solid;
+  padding: 5px 10px;
+  border-radius: 4px;
+  text-decoration: none;
+  font-weight: bold;
+  margin-left: 5px;
+}
+#login-form .btn-register:hover {
+  background-color: transparent;
+  color: #ffdd00;
+}
+
+main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: Arial, sans-serif;
+  margin: 30px 0;
+}
+main .login-form-box {
+  background-color: #333;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  width: 500px;
+  color: #fff;
+}
+
+/*# sourceMappingURL=styles.css.map */

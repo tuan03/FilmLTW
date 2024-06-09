@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous" />
+    <!-- datepicker - flatpickr -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <!-- toastr -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastr@2.1.4/build/toastr.min.css">
+    <!-- general styles -->
+    <link rel="stylesheet" href="/src/utils/css/global.css" />
+    <link rel="stylesheet" href="/src/utils/css/layout.css" />
+    <!-- independent style -->
+    <link rel="stylesheet" href="/src/views/account-info/styles.css">
+    <title>AnimeVS - Anime Vietsub</title>
+</head>
+
+<body>
+    <header id="page-header" class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/">TRANG CHỦ</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-categories">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbar-categories">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                            THỂ LOẠI
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">Tình cảm</a></li>
+                            <li><a class="dropdown-item" href="#">Kinh dị</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <div class="search-box-navbar">
+                    <form id="search-form-navbar" class="input-group" action="#" method="post">
+                        <span class="input-group-text" id="basic-addon1">
+                            <i class="bi bi-search"></i>
+                        </span>
+                        <input type="text" class="search-input-navbar" id="search-input-navbar"
+                            placeholder="Tìm: tên phim, thể loại phim...">
+                    </form>
+                    <a href="/login" class="login-sign-up-btn" type="button">Đăng nhập / Đăng ký</a>
+                </div>
+            </div>
+        </div>
+
+        <section class="search-filter-section" hidden>
+            <div class="search-filter-modal"></div>
+            <form id="search-filter-form" action="#" method="post">
+                <div class="date-filter-groups">
+                    <div class="filter-group">
+                        <label for="start-date">Từ ngày:</label>
+                        <input type="text" id="search-filter-start-date" placeholder="Chọn ngày bắt đầu..."
+                            name="start-date">
+                    </div>
+                    <div class="filter-group">
+                        <label for="end-date">Đến ngày:</label>
+                        <input type="text" id="search-filter-end-date" placeholder="Chọn ngày kết thúc..."
+                            name="end-date">
+                    </div>
+                </div>
+                <div class="filter-group">
+                    <label for="genre">Thể loại phim:</label>
+                    <select id="search-filter-genre" name="genre">
+                        <option value="all">Tất cả</option>
+                        <option value="horror">Kinh dị</option>
+                        <option value="romance">Lãng mạn</option>
+                    </select>
+                </div>
+                <button class="submit-btn" type="submit">Lọc và tìm kiếm phim</button>
+            </form>
+        </section>
+    </header>
+
+    <main id="page-main">
+        <section class="navigations-n-profile">
+            <section class="navigations">
+                <a class="nav-item">
+                    <i class="bi bi-person-circle"></i>
+                    <span>Thông tin tài khoản</span>
+                </a>
+                <a class="nav-item">
+                    <i class="bi bi-lock-fill"></i>
+                    <span>Thay đổi mật khẩu</span>
+                </a>
+                <a class="nav-item">
+                    <i class="bi bi-heart-fill"></i>
+                    <span>Các phim yêu thích</span>
+                </a>
+                <form class="nav-item" action="#" method="post">
+                    <button class="submit-btn" type="submit">
+                        <i class="bi bi-box-arrow-left"></i>
+                        <span>Đăng xuất</span>
+                    </button>
+                </form>
+            </section>
+
+            <section class="profile-n-account">
+                <div class="profile">
+                    <div class="avatar">
+                        <img src="/src/utils/imgs/default-user-avatar.png" alt="Avatar">
+                    </div>
+                    <div class="info">
+                        <h2 class="username">Kiwi</h2>
+                        <p class="date-sign-up">THAM GIA: 06/10/2023</p>
+                    </div>
+                </div>
+                <form class="account-info-form" action="#" method="post">
+                    <h1>THÔNG TIN TÀI KHOẢN</h1>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" value="Kiwi@gmail.com">
+                        <div class="invalid-message" hidden>
+                            <i class="bi bi-exclamation-triangle-fill"></i>
+                            <span>Vui lòng nhập họ và tên</span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="username">Username</label>
+                        <input type="text" id="username" placeholder="Họ và tên" value="Kiwi">
+                        <div class="invalid-message" hidden>
+                            <i class="bi bi-exclamation-triangle-fill"></i>
+                            <span>Vui lòng nhập họ và tên</span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Giới tính</label>
+                        <div class="radio-group">
+                            <input class="form-check-input" type="radio" id="female" name="gender" value="female"
+                                checked>
+                            <label for="female">Nữ</label>
+                            <input class="form-check-input" type="radio" id="male" name="gender" value="male">
+                            <label for="male">Nam</label>
+                            <input class="form-check-input" type="radio" id="other" name="gender" value="other">
+                            <label for="other">Không xác định</label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="avatar">Ảnh đại diện</label>
+                        <div>
+                            <input type="file" class="form-control" id="avatar" placeholder="Username">
+                            <small>(Ảnh nhỏ hơn 5MB, nếu ảnh lớn hơn 5MB sẽ chọn ảnh đại diện mặc định)</small>
+                        </div>
+                        <div class="invalid-message" hidden>
+                            <i class="bi bi-exclamation-triangle-fill"></i>
+                            <span class="message"></span>
+                        </div>
+                    </div>
+                    <button class="submit-btn" type="submit">CẬP NHẬT</button>
+                </form>
+            </section>
+        </section>
+    </main>
+
+    <footer id="page-footer" class="bg-dark text-center text-white py-3">
+        <p>© Bản quyền thuộc về 2024 AnimeVS.TV tất cả các quyền đã được bảo lưu.</p>
+    </footer>
+
+    <!-- jquery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- additional bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"
+        defer></script>
+    <!-- bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
+        integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"
+        defer></script>
+    <!-- moment.js -->
+    <script src="https://cdn.jsdelivr.net/npm/moment@2.30.1/moment.min.js" defer></script>
+    <!-- toast - toastr -->
+    <script src="https://cdn.jsdelivr.net/npm/toastr@2.1.4/toastr.min.js" defer></script>
+    <!-- datepicker - flatpickr -->
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <!-- general scripts -->
+    <script src="/src/utils/js/utils.js" defer></script>
+    <script src="/src/utils/js/layout.js" defer></script>
+    <!-- independent script -->
+    <script src="/src/views/home/scripts.js" defer></script>
+</body>
+
+</html>
