@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous" />
+    <!-- video player - plyr -->
+    <link rel="stylesheet" href="https://cdn.plyr.io/3.7.8/plyr.css" />
+    <!-- datepicker - flatpickr -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <!-- toastr -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastr@2.1.4/build/toastr.min.css">
+    <!-- general styles -->
+    <link rel="stylesheet" href="/resources/css/global.css" />
+    <!-- independent style -->
+    <link rel="stylesheet" href="/resources/css/cinema-page.css">
+    <title>AnimeVS - Anime Vietsub</title>
+</head>
+
+<body>
+    <header id="page-header" class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/">TRANG CHỦ</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-categories">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbar-categories">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                            THỂ LOẠI
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">Tình cảm</a></li>
+                            <li><a class="dropdown-item" href="#">Kinh dị</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <div class="search-box-navbar">
+                    <form id="search-form-navbar" class="input-group" action="#" method="post">
+                        <span class="input-group-text" id="basic-addon1">
+                            <i class="bi bi-search"></i>
+                        </span>
+                        <input type="text" class="search-input-navbar" id="search-input-navbar"
+                            placeholder="Tìm: tên phim, thể loại phim...">
+                    </form>
+
+                    <!-- Nút đăng nhập đăng ký khi user chưa đăng nhập -->
+                    <!-- <a href="/login" class="login-sign-up-btn" type="button">Đăng nhập / Đăng ký</a> -->
+
+                    <!-- Nút user khi user đã đăng nhập -->
+                    <div class="authenticated-user dropdown">
+                        <div class="user-btn">
+                            <i class="bi bi-person-fill"></i>
+                        </div>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li>
+                                <a class="dropdown-item" href="/account-info">
+                                    <i class="bi bi-person-fill"></i>
+                                    <span>Hồ sơ</span>
+                                </a>
+                            </li>
+                            <li>
+                                <button type="button" data-bs-toggle="modal" data-bs-target="#logout-form-section"
+                                    class="dropdown-item">
+                                    <i class="bi bi-box-arrow-left"></i>
+                                    <span>Đăng xuất</span>
+                                </button>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <section class="search-filter-section" hidden>
+            <div class="search-filter-modal"></div>
+            <form id="search-filter-form" action="#" method="post">
+                <div class="date-filter-groups">
+                    <div class="filter-group">
+                        <label for="start-date">Từ ngày:</label>
+                        <input type="text" id="search-filter-start-date" placeholder="Chọn ngày bắt đầu..."
+                            name="start-date">
+                    </div>
+                    <div class="filter-group">
+                        <label for="end-date">Đến ngày:</label>
+                        <input type="text" id="search-filter-end-date" placeholder="Chọn ngày kết thúc..."
+                            name="end-date">
+                    </div>
+                </div>
+                <div class="filter-group">
+                    <label for="genre">Thể loại phim:</label>
+                    <select id="search-filter-genre" name="genre">
+                        <option value="all">Tất cả</option>
+                        <option value="horror">Kinh dị</option>
+                        <option value="romance">Lãng mạn</option>
+                    </select>
+                </div>
+                <button class="submit-btn" type="submit">Lọc và tìm kiếm phim</button>
+            </form>
+        </section>
+    </header>
+
+    <section class="modal" id="logout-form-section" tabindex="-1">
+        <form id="logout-form" class="modal-dialog" action="#" method="post">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Xác nhận đăng xuất</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div>Bạn xác nhận sẽ đăng xuất?</div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary cancel" data-bs-dismiss="modal">Hủy</button>
+                    <button type="submit" class="btn confirm">Xác nhận</button>
+                </div>
+            </div>
+        </form>
+    </section>
+
+    <main id="page-main">
+        <section class="video-player-n-episodes-list">
+            <section class="video-player-section">
+                <div class="video-player-box">
+                    <video id="video-player" playsinline controls>
+                        <source src="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-576p.mp4"
+                            type="video/mp4" />
+                        <source src="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-576p.mp4"
+                            type="video/webm" />
+                        <source src="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-576p.mp4"
+                            type="video/ogg" />
+                    </video>
+                </div>
+            </section>
+
+            <section class="episodes-section">
+                <h2 class="section-title">DANH SÁCH TẬP</h2>
+                <div class="total-videos">Tổng số: 12 video</div>
+                <div class="episodes-list">
+                    <a class="episode" href="#">
+                        <div class="episode-number">
+                            <span class="value">1</span>
+                        </div>
+                        <div class="episode-info">
+                            <div class="episode-title active">Tập 1 - Ma cà rồng tự kỷ ra ngoài xã hội</div>
+                            <div class="episode-views">27,160 lượt xem</div>
+                        </div>
+                    </a>
+                    <a class="episode" href="#">
+                        <div class="episode-number">
+                            <span class="value">2</span>
+                        </div>
+                        <div class="episode-info">
+                            <div class="episode-title">Tập 2 - Bùng nổ hành động phản loạn</div>
+                            <div class="episode-views">11,906 lượt xem</div>
+                        </div>
+                    </a>
+                    <a class="episode" href="#">
+                        <div class="episode-number">
+                            <span class="value">3</span>
+                        </div>
+                        <div class="episode-info">
+                            <div class="episode-title">Tập 3 - Bóng tối của công chúa Ma cà rồng tự kỷ</div>
+                            <div class="episode-views">10,046 lượt xem</div>
+                        </div>
+                    </a>
+                    <a class="episode" href="#">
+                        <div class="episode-number">
+                            <span class="value">4</span>
+                        </div>
+                        <div class="episode-info">
+                            <div class="episode-title">Tập 4 - Có Hồng Tuất</div>
+                            <div class="episode-views">12,257 lượt xem</div>
+                        </div>
+                    </a>
+                    <a class="episode" href="#">
+                        <div class="episode-number">
+                            <span class="value">5</span>
+                        </div>
+                        <div class="episode-info">
+                            <div class="episode-title">Tập 5 - Sakuna Memoir và các Thất Hồng Thiên</div>
+                            <div class="episode-views">10,880 lượt xem</div>
+                        </div>
+                    </a>
+                    <a class="episode" href="#">
+                        <div class="episode-number">
+                            <span class="value">6</span>
+                        </div>
+                        <div class="episode-info">
+                            <div class="episode-title">Tập 6 - Hội nghị bàn tròn và những kẻ ác ẩn</div>
+                            <div class="episode-views">15,500 lượt xem</div>
+                        </div>
+                    </a>
+                </div>
+            </section>
+        </section>
+    </main>
+
+    <footer id="page-footer" class="bg-dark text-center text-white py-3">
+        <p>© Bản quyền thuộc về 2024 AnimeVS.TV tất cả các quyền đã được bảo lưu.</p>
+    </footer>
+
+    <!-- jquery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- additional bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"
+        defer></script>
+    <!-- bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
+        integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"
+        defer></script>
+    <!-- video player - plyr -->
+    <script src="https://cdn.plyr.io/3.6.12/plyr.polyfilled.js" defer></script>
+    <!-- moment.js -->
+    <script src="https://cdn.jsdelivr.net/npm/moment@2.30.1/moment.min.js" defer></script>
+    <!-- toast - toastr -->
+    <script src="https://cdn.jsdelivr.net/npm/toastr@2.1.4/toastr.min.js" defer></script>
+    <!-- datepicker - flatpickr -->
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <!-- general scripts -->
+    <script src="/resources/js/utils.js" defer></script>
+    <!-- independent script -->
+    <script src="/resources/js/cinema-page.js" defer></script>
+</body>
+
+</html>

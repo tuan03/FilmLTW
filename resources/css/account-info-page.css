@@ -1,0 +1,145 @@
+#page-main .navigations-n-profile {
+  display: flex;
+  column-gap: 20px;
+  margin: 30px 0;
+  padding: 0 30px;
+}
+#page-main .navigations-n-profile .navigations {
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+  width: 20%;
+}
+#page-main .navigations-n-profile .navigations .nav-item {
+  display: flex;
+  align-items: center;
+  column-gap: 8px;
+  border-radius: 5px;
+  width: 100%;
+  background-color: white;
+  color: black;
+  padding: 8px 18px;
+  border: 2px #2d2d2d solid;
+  font-weight: bold;
+}
+#page-main .navigations-n-profile .navigations .nav-item:hover {
+  outline: 2px white solid;
+}
+#page-main .navigations-n-profile .navigations form.nav-item .submit-btn {
+  display: flex;
+  column-gap: 8px;
+  align-items: center;
+  background-color: white;
+  padding: 0;
+  font-weight: bold;
+}
+#page-main .navigations-n-profile .profile-n-account {
+  display: flex;
+  column-gap: 50px;
+  width: 90%;
+  background-color: #212529;
+  padding: 30px;
+  border-radius: 8px;
+  color: white;
+}
+#page-main .navigations-n-profile .profile-n-account .profile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 15px;
+  width: 25%;
+}
+#page-main .navigations-n-profile .profile-n-account .profile .avatar img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+}
+#page-main .navigations-n-profile .profile-n-account .profile .info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 15px;
+}
+#page-main .navigations-n-profile .profile-n-account .profile .info .full-name {
+  margin: 0;
+  font-size: 24px;
+}
+#page-main .navigations-n-profile .profile-n-account .profile .info .date-sign-up {
+  text-align: center;
+  color: #f9c90f;
+}
+
+#account-info-form {
+  width: 100%;
+}
+#account-info-form h1 {
+  text-align: center;
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+#account-info-form .form-group {
+  margin-bottom: 15px;
+  margin-top: 20px;
+}
+#account-info-form .form-group label {
+  display: block;
+  padding-left: 5px;
+}
+#account-info-form .form-group input[type=text],
+#account-info-form .form-group input[type=email],
+#account-info-form .form-group input[type=password],
+#account-info-form .form-group input[type=file] {
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
+  border: 2px #212529 solid;
+  border-radius: 5px;
+  box-shadow: none;
+}
+#account-info-form .form-group input:focus {
+  outline: 2px white solid;
+}
+#account-info-form .form-group .radio-group {
+  display: flex;
+  align-items: center;
+  margin-top: 5px;
+}
+#account-info-form .form-group .radio-group input {
+  margin: 0;
+  margin-right: 5px;
+  cursor: pointer;
+}
+#account-info-form .form-group .radio-group label {
+  margin-right: 25px;
+}
+#account-info-form .form-group small {
+  display: block;
+  margin-top: 5px;
+}
+#account-info-form .form-group .invalid-message {
+  display: flex;
+  column-gap: 10px;
+  padding: 0 10px;
+  color: red;
+  margin-top: 5px;
+}
+#account-info-form .form-group .invalid-message i {
+  color: red;
+}
+#account-info-form .submit-btn {
+  width: 100%;
+  padding: 8px;
+  background-color: #007acc;
+  border: 2px #212529 solid;
+  border-radius: 5px;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 10px;
+}
+#account-info-form .submit-btn:hover {
+  outline: 2px #007acc solid;
+}
+
+/*# sourceMappingURL=account-info-page.css.map */
