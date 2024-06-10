@@ -333,7 +333,7 @@ $avs-series-info-regular-witdh: 880px;
                 }
             }
 
-            .comment-box {
+            .comments-box {
                 color: black;
 
                 .comment {
@@ -434,6 +434,42 @@ $avs-series-info-regular-witdh: 880px;
                                     font-size: 0.85rem;
                                     color: gray;
                                     line-height: 1rem;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            .pagination-box {
+                display: flex;
+                justify-content: center;
+                margin-top: 20px;
+
+                nav {
+                    .pagination {
+                        margin-bottom: 0;
+
+                        .page-item {
+                            color: black;
+                            box-shadow: none;
+
+                            .page-link {
+                                color: inherit;
+                                box-shadow: none;
+                            }
+
+                            &.active {
+                                .page-link {
+                                    background-color: black;
+                                    border-color: black;
+                                    color: white;
+                                }
+                            }
+
+                            &:hover {
+                                .page-link {
+                                    background-color: #ededed;
                                 }
                             }
                         }

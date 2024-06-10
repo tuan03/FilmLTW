@@ -127,6 +127,7 @@
     <main id="page-main">
         <div class="top-container">
             <section class="video-player-n-episodes-list">
+                <!-- trình chơi video -->
                 <section class="video-player-section">
                     <div class="video-player-box">
                         <video id="video-player" playsinline controls>
@@ -265,7 +266,9 @@
                 </div>
             </section>
 
+            <!-- section bình luận -->
             <section class="comment-section">
+                <!-- section viết bình luận của user -->
                 <form action="#" method="post" id="make-comment-form" class="make-comment-form">
                     <div class="make-comment-title">
                         <i class="bi bi-chat-quote"></i>
@@ -279,7 +282,9 @@
                     </div>
                     <div class="invalid-message" hidden>Vui lòng nhập bình luận</div>
                 </form>
-                <div class="comment-box">
+
+                <!-- section danh sách các bình luận được viết -->
+                <div class="comments-box">
                     <div class="comment">
                         <div class="avatar-wrapper">
                             <img src="https://www.cartoonize.net/wp-content/uploads/2024/05/avatar-maker-photo-to-cartoon.png"
@@ -444,6 +449,18 @@
                             </form>
                         </div>
                     </div>
+                </div>
+
+                <div class="pagination-box">
+                    <nav>
+                        <ul class="pagination">
+                            <li class="page-item"><a class="page-link" href="#">Trước</a></li>
+                            <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                            <li class="page-item"><a class="page-link" href="#">2</a></li>
+                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                            <li class="page-item"><a class="page-link" href="#">Sau</a></li>
+                        </ul>
+                    </nav>
                 </div>
             </section>
         </div>
