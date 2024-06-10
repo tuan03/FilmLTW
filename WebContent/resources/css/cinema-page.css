@@ -1,0 +1,106 @@
+@charset "UTF-8";
+#page-main {
+  padding: 20px;
+  color: #fff;
+}
+#page-main .video-player-n-episodes-list {
+  display: flex;
+  justify-content: space-between;
+}
+#page-main .video-player-n-episodes-list .video-player-section .video-player-box {
+  width: 880px;
+}
+#page-main .video-player-n-episodes-list .episodes-section {
+  border: 1px #555454 solid;
+  width: 320px;
+}
+#page-main .video-player-n-episodes-list .episodes-section .section-title {
+  display: inline-block;
+  font-size: 16px;
+  border-bottom: 2px solid #f00;
+  padding: 13px;
+  padding-bottom: 5px;
+}
+#page-main .video-player-n-episodes-list .episodes-section .total-videos {
+  font-size: 14px;
+  padding: 13px;
+  border: 1px #555454 solid;
+}
+#page-main .video-player-n-episodes-list .episodes-section .episodes-list {
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+  width: 100%;
+  padding: 13px;
+  border-radius: 8px;
+  height: 403px;
+  overflow-y: auto;
+}
+#page-main .video-player-n-episodes-list .episodes-section .episodes-list::-webkit-scrollbar {
+  /* Màu sắc thanh cuộn */
+  background-color: transparent;
+}
+#page-main .video-player-n-episodes-list .episodes-section .episodes-list::-webkit-scrollbar-thumb {
+  /* Màu sắc thanh trượt */
+  background-color: rgba(153, 153, 153, 0.3333333333);
+}
+#page-main .video-player-n-episodes-list .episodes-section .episodes-list::-webkit-scrollbar {
+  width: 7px;
+  border-radius: 5px;
+}
+#page-main .video-player-n-episodes-list .episodes-section .episodes-list::-webkit-scrollbar-thumb {
+  height: 20px;
+  border-radius: 10px;
+}
+#page-main .video-player-n-episodes-list .episodes-section .episodes-list:hover::-webkit-scrollbar-thumb {
+  /* Màu sắc thanh trượt */
+  background-color: #999999;
+}
+#page-main .video-player-n-episodes-list .episodes-section .episodes-list .episode {
+  display: flex;
+  height: 62px;
+  width: 100%;
+  cursor: pointer;
+  color: white;
+}
+#page-main .video-player-n-episodes-list .episodes-section .episodes-list .episode .episode-number {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  background-color: rgba(0, 0, 0, 0.3215686275);
+  width: 105px;
+  height: 100%;
+  border-radius: 4px;
+  margin-right: 10px;
+}
+#page-main .video-player-n-episodes-list .episodes-section .episodes-list .episode .episode-number .value {
+  transition: transform 0.2s;
+}
+#page-main .video-player-n-episodes-list .episodes-section .episodes-list .episode .episode-info {
+  width: 100%;
+}
+#page-main .video-player-n-episodes-list .episodes-section .episodes-list .episode .episode-info .episode-title {
+  font-size: 14px;
+  font-weight: bold;
+  margin-bottom: 5px;
+  white-space: pre-wrap;
+  width: 100%;
+}
+#page-main .video-player-n-episodes-list .episodes-section .episodes-list .episode .episode-info .episode-title.active {
+  color: #00f4ff;
+}
+#page-main .video-player-n-episodes-list .episodes-section .episodes-list .episode .episode-info .episode-views {
+  display: flex;
+  line-height: 0.9rem;
+  font-size: 12px;
+  color: #bbb;
+}
+#page-main .video-player-n-episodes-list .episodes-section .episodes-list .episode:hover .episode-number .value {
+  transform: scale(1.5);
+}
+#page-main .video-player-n-episodes-list .episodes-section .episodes-list .episode:hover .episode-info .episode-title {
+  color: #00f4ff;
+}
+
+/*# sourceMappingURL=cinema-page.css.map */
