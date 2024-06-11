@@ -30,9 +30,9 @@
                             placeholder="Tìm: tên phim, thể loại phim...">
                     </form>
 
-                    <!-- Nút đăng nhập đăng ký khi user chưa đăng nhập -->
-                    <!-- <a href="/login" class="login-sign-up-btn" type="button">Đăng nhập / Đăng ký</a> -->
 
+    <% if (session.getAttribute("User") != null) { %>    
+    
                     <!-- Nút user khi user đã đăng nhập -->
                     <div class="authenticated-user dropdown">
                         <div class="user-btn">
@@ -54,6 +54,11 @@
                             </li>
                         </ul>
                     </div>
+                    
+                   <% } else { %>
+   <a href="/login" class="login-sign-up-btn" type="button">Đăng nhập / Đăng ký</a>
+    <% } %> 
+                    
                 </div>
             </div>
         </div>
@@ -87,7 +92,7 @@
     </header>
 
     <section class="modal" id="logout-form-section" tabindex="-1">
-        <form id="logout-form" class="modal-dialog" action="#" method="post">
+        <form id="logout-form" class="modal-dialog" action="logout.htm" method="get">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Xác nhận đăng xuất</h5>

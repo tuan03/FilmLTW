@@ -23,6 +23,13 @@
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <!-- general scripts -->
     <script src="<c:url value='/resources/js/utils.js'/>" defer></script>
+     <script>
+    document.addEventListener("DOMContentLoaded", function() {
+    	<c:if test="${not empty errorMessage}">
+        toastr.error("${errorMessage}");
+        </c:if>
+    })
+    </script>
     
 </body>
 

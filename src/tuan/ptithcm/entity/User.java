@@ -4,6 +4,8 @@ import javax.persistence.*;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import javax.validation.constraints.NotNull;
+
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -20,8 +22,8 @@ public class User {
     @Column(unique = true, nullable = false)
     private String email;
 
-    @Pattern(regexp = "^[a-zA-Z\\s]*$", message = "Full name should contain only letters and spaces")
-    @Size(max = 255, message = "Full name should not be longer than 255 characters")
+
+    @Size(min = 1 ,max = 255, message = "Tên đầy đủ phải nhiều hơn 1 kí tự và ít hơn 255 kí tự")
     @Column(nullable = false)
     private String fullname;
 
@@ -33,10 +35,10 @@ public class User {
     @NotNull(message = "Role is mandatory")
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private Role role = Role.USER;
+    private Role role = Role.User;
 
     @Column(name = "created_at", updatable = false)
-    private LocalDateTime createdAt = LocalDateTime.now();
+    private Timestamp createdAt = Timestamp.valueOf(LocalDateTime.now());
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Comment> comments;
@@ -89,11 +91,11 @@ public class User {
         this.role = role;
     }
 
-    public LocalDateTime getCreatedAt() {
+    public Timestamp getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(LocalDateTime createdAt) {
+    public void setCreatedAt(Timestamp createdAt) {
         this.createdAt = createdAt;
     }
 
@@ -122,7 +124,7 @@ public class User {
     }
 
     // Enum for roles
-    public enum Role {
-        USER, ADMIN
+    static public enum Role {
+        User, Admin
     }
 }

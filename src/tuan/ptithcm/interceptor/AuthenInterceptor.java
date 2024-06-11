@@ -10,13 +10,13 @@ public class AuthenInterceptor extends HandlerInterceptorAdapter {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
     	HttpSession session = request.getSession();
-    	Object value = session.getAttribute("tuann");
+    	Object value = session.getAttribute("User");
     	if (value != null) {
-    	    System.out.println("Value of 'tuann': " + value.toString());
+    	    return true;
     	} else {
-    	    System.out.println("'tuann' attribute not found in session");
+    		response.sendRedirect(request.getContextPath() + "/login.htm"); 
+    		return false;
     	}
-        return false; // hoặc false nếu xác thực thất bại
     }
     
     @Override

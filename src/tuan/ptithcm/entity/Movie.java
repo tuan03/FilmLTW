@@ -4,6 +4,8 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
+
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -26,7 +28,7 @@ public class Movie {
     private String description;
 
     @Column(name = "release_date")
-    private LocalDateTime releaseDate;
+    private Timestamp releaseDate;
 
     @Pattern(regexp = "^(http[s]?://.*)$", message = "Poster URL should be a valid URL")
     @Size(max = 255, message = "Poster URL should not be longer than 255 characters")
@@ -75,11 +77,11 @@ public class Movie {
         this.description = description;
     }
 
-    public LocalDateTime getReleaseDate() {
+    public Timestamp getReleaseDate() {
         return releaseDate;
     }
 
-    public void setReleaseDate(LocalDateTime releaseDate) {
+    public void setReleaseDate(Timestamp releaseDate) {
         this.releaseDate = releaseDate;
     }
 

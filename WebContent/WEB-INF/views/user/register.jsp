@@ -8,16 +8,17 @@
 
     <main id="page-main">
         <div class="sign-up-form-box">
-            <form id="sign-up-form" action="#" method="post">
+            <form:form id="sign-up-form" action="sign-up.htm" method="post" modelAttribute="User">
                 <div class="form-header">
-                    <h2>Đăng ký</h2>
+                    <h2>Đăng ký</h2> 
+
                 </div>
                 <div class="form-group">
                     <label for="email">
                         <i class="bi bi-person-fill"></i>
                         <span>Họ và Tên</span>
                     </label>
-                    <input id="full-name" name="email" placeholder="Nhập họ và tên của bạn...">
+                    <input id="full-name" name="fullname" placeholder="Nhập họ và tên của bạn..." value="${User.fullname }">
                     <div class="invalid-message" hidden>
                         <i class="bi bi-exclamation-triangle-fill"></i>
                         <span>Vui lòng nhập họ và tên.</span>
@@ -28,7 +29,7 @@
                         <i class="bi bi-envelope"></i>
                         <span>Email đăng nhập</span>
                     </label>
-                    <input id="email" name="email" placeholder="Nhập email của bạn...">
+                    <input id="email" name="email" placeholder="Nhập email của bạn..." value="${User.email }">
                     <div class="invalid-message" hidden>
                         <i class="bi bi-exclamation-triangle-fill"></i>
                         <span>Vui lòng nhập email hợp lệ.</span>
@@ -85,10 +86,13 @@
                     <span>Đã có tài khoản?</span>
                     <a href="login.htm" class="btn-login">ĐĂNG NHẬP!</a>
                 </div>
-            </form>
+            </form:form>
         </div>
     </main>
 
     <script src="resources/js/sign-up-page.js" defer></script>
+    
+
+
 
 <%@ include file="../partical/footer.jsp" %>

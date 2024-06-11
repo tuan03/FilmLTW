@@ -2,6 +2,8 @@ package ptithcm.entity;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
 @Entity
@@ -23,7 +25,7 @@ public class Like {
     private Movie movie;
 
     @Column(name = "created_at", updatable = false)
-    private LocalDateTime createdAt = LocalDateTime.now();
+    private Timestamp createdAt = Timestamp.valueOf(LocalDateTime.now());
 
     // Getters and Setters
 
@@ -51,11 +53,11 @@ public class Like {
         this.movie = movie;
     }
 
-    public LocalDateTime getCreatedAt() {
+    public Timestamp getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(LocalDateTime createdAt) {
+    public void setCreatedAt(Timestamp createdAt) {
         this.createdAt = createdAt;
     }
 }
