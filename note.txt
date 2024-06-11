@@ -1,28 +1,28 @@
 homepage:{ 2
-    - top 10 phim có nhiều lượt xem nhất từ trước đến giờ (3 tháng)
-    - top 10 phim được tải lên mới nhất
-    - tất cả các phim 
+    - top 10 phim có nhiều lượt xem nhất từ trước đến giờ (3 tháng)===
+    - top 10 phim được tải lên mới nhất===
+    - tất cả các phim===
         + phân loại phim 
-    - thanh tìm kiếm phim:
+    - thanh tìm kiếm phim===
         + theo tên phim
         + theo thể loại
         + theo ngày 
 }
 sign in , sign up:{ 1
-    - đăng nhập
-    - đăng ký
-    - quên mật khẩu
-    - đăng xuất
+    - đăng nhập===
+    - đăng ký===
+    - quên mật khẩu===
+    - đăng xuất===
 }
 player page:{ 3
-    - giao diện xem phim:
+    - giao diện xem phim:===
         + nút play , pause
         + nut tua đến , tua về
         + nút next ep
         + nút like , cancel like
-    - giao diện các ep của phim:
+    - giao diện các ep của phim:===
         + hiện các ep của phim
-    - giao diện bình luận:
+    - giao diện bình luận:===
         + comment section
         + comment list (có avatar user)
             + like comment button
@@ -30,10 +30,10 @@ player page:{ 3
         + phân trang cho comment
 }
 user page:{ 4
-    - xem thông tin user
-    - chỉnh sửa thông user
-    - chỉnh sửa mật khẩu
-    - các phim đã thích
+    - xem thông tin user===
+    - chỉnh sửa thông user===
+    - chỉnh sửa mật khẩu===
+    - các phim đã thích===
 }
 admin page:{ 5
     - quản lý thể loại phim
