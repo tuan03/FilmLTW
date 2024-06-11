@@ -9,6 +9,8 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous" />
+    <!-- video player - plyr -->
+    <link rel="stylesheet" href="https://cdn.plyr.io/3.7.8/plyr.css" />
     <!-- datepicker - flatpickr -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <!-- toastr -->
@@ -16,7 +18,7 @@
     <!-- general styles -->
     <link rel="stylesheet" href="/resources/css/global.css" />
     <!-- independent style -->
-    <link rel="stylesheet" href="/resources/css/account-info-page.css">
+    <link rel="stylesheet" href="/resources/css/upload-series-page.css">
     <title>AnimeVS - Anime Vietsub</title>
 </head>
 
@@ -123,80 +125,97 @@
     </section>
 
     <main id="page-main">
-        <section class="account-info-main-container">
-            <section class="navigations">
-                <a class="nav-item">
-                    <i class="bi bi-person-circle"></i>
-                    <span>Thông tin tài khoản</span>
-                </a>
-                <a class="nav-item">
-                    <i class="bi bi-lock-fill"></i>
-                    <span>Thay đổi mật khẩu</span>
-                </a>
-                <a class="nav-item">
-                    <i class="bi bi-heart-fill"></i>
-                    <span>Các phim yêu thích</span>
-                </a>
-                <button class="nav-item" type="button" data-bs-toggle="modal" data-bs-target="#logout-form-section">
-                    <i class="bi bi-box-arrow-left"></i>
-                    <span>Đăng xuất</span>
-                </button>
-            </section>
-
-            <section class="right-section">
-                <div class="profile">
-                    <div class="avatar">
-                        <img src="/resources/imgs/default-user-avatar.png" alt="Avatar">
-                    </div>
-                    <div class="info">
-                        <h2 class="username">Kiwi</h2>
-                        <p class="date-sign-up">THAM GIA: 06/10/2023</p>
-                    </div>
-                </div>
-                <form id="account-info-form" action="#" method="post">
-                    <h1>THÔNG TIN TÀI KHOẢN</h1>
-                    <div class="form-group email">
-                        <label for="email">Email</label>
-                        <input type="text" id="email" name="email" value="Kiwi@gmail.com">
-                        <div class="invalid-message" hidden>
-                            <i class="bi bi-exclamation-triangle-fill"></i>
-                            <span>Vui lòng nhập email hợp lệ</span>
+        <section class="upload-video-section">
+            <div class="upload-video-container">
+                <h1 class="upload-video-title">Đăng tải phim</h1>
+                <p class="notice">Các trường với <span class="required">*</span> là bắt buộc</p>
+                <form action="#" method="post" id="upload-video-form">
+                    <div class="d-flex justify-content-between" style="column-gap: 20px;">
+                        <div style="width: 30%;">
+                            <div class="form-group movie-cover">
+                                <label for="movie-cover">
+                                    <span>Bìa phim</span>
+                                    <span class="required">*</span>
+                                </label>
+                                <input type="file" id="movie-cover" name="movie-cover" accept="image/*" />
+                                <div class="invalid-message" hidden>Vui lòng chọn bìa phim</div>
+                                <div id="movie-cover-preview"></div>
+                            </div>
+                        </div>
+                        <div style="width: 70%;">
+                            <div class="form-group movie-title">
+                                <label for="movie-title">
+                                    <span>Tiêu đề</span>
+                                    <span class="required">*</span>
+                                </label>
+                                <input type="text" id="movie-title" name="movie-title"
+                                    placeholder="Nhập tiêu đề phim...">
+                                <div class="invalid-message" hidden>Vui lòng nhập tiêu đề cho phim</div>
+                            </div>
+                            <div class="form-group movie-description">
+                                <label for="movie-description">Mô tả</label>
+                                <textarea id="movie-description" name="movie-description" rows="5"
+                                    placeholder="Nhập mô tả phim..."></textarea>
+                                <div class="invalid-message" hidden>Vui lòng nhập mô tả cho phim</div>
+                            </div>
+                            <div class="form-group movie-genre">
+                                <label for="movie-genre">
+                                    <span>Thể loại phim</span>
+                                    <span class="required">*</span>
+                                </label>
+                                <div class="select-genres-box container">
+                                    <div class="dropdown">
+                                        <button class="select-genres-btn btn btn-secondary dropdown-toggle"
+                                            type="button" data-bs-toggle="dropdown">
+                                            Chọn các thể loại cho phim
+                                        </button>
+                                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                            <li>
+                                                <span class="dropdown-item" href="#" data-genre-id="1"
+                                                    data-genre-label="Hành động">
+                                                    Hành động
+                                                </span>
+                                            </li>
+                                            <li>
+                                                <span class="dropdown-item" href="#" data-genre-id="2"
+                                                    data-genre-label="Hài kịch">
+                                                    Hài kịch
+                                                </span>
+                                            </li>
+                                            <li>
+                                                <span class="dropdown-item" href="#" data-genre-id="3"
+                                                    data-genre-label="Tình cảm">
+                                                    Tình cảm
+                                                </span>
+                                            </li>
+                                            <li>
+                                                <span class="dropdown-item" href="#" data-genre-id="4"
+                                                    data-genre-label="Khoa học viễn tưởng">
+                                                    Khoa học viễn tưởng
+                                                </span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div id="chips-container" class="d-flex flex-wrap"></div>
+                                </div>
+                                <div class="invalid-message" hidden>Vui lòng chọn ít nhất 1 thể loại cho phim</div>
+                            </div>
+                            <div class="form-group release-date">
+                                <label for="release-date">
+                                    <span>Ngày công chiếu</span>
+                                    <span class="required">*</span>
+                                </label>
+                                <input type="date" id="release-date" name="release-date"
+                                    placeholder="Chọn ngày công chiếu...">
+                                <div class="invalid-message" hidden>Vui lòng chọn ngày công chiếu cho phim</div>
+                            </div>
                         </div>
                     </div>
-                    <div class="form-group username">
-                        <label for="username">Username</label>
-                        <input type="text" id="username" name="username" placeholder="Họ và tên" value="Kiwi">
-                        <div class="invalid-message" hidden>
-                            <i class="bi bi-exclamation-triangle-fill"></i>
-                            <span>Vui lòng nhập họ và tên</span>
-                        </div>
+                    <div class="form-group">
+                        <button type="submit">Upload Movie</button>
                     </div>
-                    <div class="form-group gender">
-                        <label>Giới tính</label>
-                        <div class="radio-group">
-                            <input class="form-check-input" type="radio" id="female" name="gender" value="female"
-                                checked>
-                            <label for="female">Nữ</label>
-                            <input class="form-check-input" type="radio" id="male" name="gender" value="male">
-                            <label for="male">Nam</label>
-                            <input class="form-check-input" type="radio" id="other" name="gender" value="other">
-                            <label for="other">Không xác định</label>
-                        </div>
-                    </div>
-                    <div class="form-group avatar">
-                        <label for="avatar">Ảnh đại diện</label>
-                        <div>
-                            <input type="file" class="form-control" accept="image/*" id="avatar" placeholder="Username">
-                            <small>(Ảnh nhỏ hơn 5MB, nếu ảnh lớn hơn 5MB sẽ chọn ảnh đại diện mặc định)</small>
-                        </div>
-                        <div class="invalid-message" hidden>
-                            <i class="bi bi-exclamation-triangle-fill"></i>
-                            <span class="message"></span>
-                        </div>
-                    </div>
-                    <button class="submit-btn" type="submit">CẬP NHẬT</button>
                 </form>
-            </section>
+            </div>
         </section>
     </main>
 
@@ -214,6 +233,8 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
         integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"
         defer></script>
+    <!-- video player - plyr -->
+    <script src="https://cdn.plyr.io/3.6.12/plyr.polyfilled.js" defer></script>
     <!-- moment.js -->
     <script src="https://cdn.jsdelivr.net/npm/moment@2.30.1/moment.min.js" defer></script>
     <!-- toast - toastr -->
@@ -223,7 +244,7 @@
     <!-- general scripts -->
     <script src="/resources/js/utils.js" defer></script>
     <!-- independent script -->
-    <script src="/resources/js/account-info-page.js" defer></script>
+    <script src="/resources/js/upload-series-page.js" defer></script>
 </body>
 
 </html>

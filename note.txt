@@ -30,7 +30,8 @@ player page:{ 3
         + phân trang cho comment
 }
 user page:{ 4
-    - xem thông tin user===
+    - xem thông tin user (**)
+        + chọn avatar
     - chỉnh sửa thông user===
     - chỉnh sửa mật khẩu===
     - các phim đã thích===

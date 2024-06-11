@@ -1,0 +1,182 @@
+#page-main {
+  background-color: #1e1e1e;
+  color: #fff;
+  font-family: Arial, sans-serif;
+}
+#page-main .container {
+  padding: 20px;
+}
+#page-main .section {
+  margin-bottom: 40px;
+}
+#page-main .section .section-title-box {
+  display: flex;
+  column-gap: 20px;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #555;
+  padding-bottom: 5px;
+  margin-bottom: 10px;
+}
+#page-main .section .section-title-box .section-title {
+  font-size: 24px;
+}
+#page-main .section .section-title-box .add-genre {
+  display: flex;
+  column-gap: 5px;
+  align-items: center;
+  padding: 4px 15px;
+  border-radius: 5px;
+  border: 2px white solid;
+  background-color: white;
+}
+#page-main .section .section-title-box .add-genre i {
+  display: flex;
+}
+#page-main .section .section-title-box .add-genre:hover {
+  background-color: transparent;
+  color: white;
+}
+#page-main .section .section-title-box .add-genre:hover i {
+  color: white;
+}
+#page-main .section .genres {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+#page-main .section .genres .genre {
+  display: flex;
+  align-items: center;
+  background-color: #333;
+  margin: 5px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+#page-main .section .genres .genre:hover {
+  background-color: #555;
+}
+#page-main .section .genres .genre .editor {
+  color: white;
+  background-color: transparent;
+  width: fit-content;
+  padding: 10px 15px;
+  text-align: center;
+}
+#page-main .section .genres .genre .actions {
+  display: flex;
+  align-items: center;
+  column-gap: 8px;
+  padding-right: 15px;
+}
+#page-main .section .genres .genre .actions .save-action i {
+  display: flex;
+  color: #49ff49;
+}
+#page-main .section .genres .genre .actions .save-action:hover {
+  transform: scale(1.2);
+}
+#page-main .section .genres .genre .actions .delete-action i {
+  display: flex;
+  color: red;
+}
+#page-main .section .genres .genre .actions .delete-action:hover {
+  transform: scale(1.2);
+}
+#page-main .section .search-series .form-group .input-wrapper {
+  position: relative;
+}
+#page-main .section .search-series .form-group .input-wrapper .search-icon {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 15px;
+}
+#page-main .section .search-series .form-group .input-wrapper .search-icon i {
+  color: white;
+}
+#page-main .section .search-series .form-group .input-wrapper input {
+  width: 100%;
+  padding: 7px 15px;
+  border-radius: 5px;
+  background-color: #2c2c2c;
+  font-size: 1.1rem;
+  color: white;
+  padding-left: 50px;
+}
+#page-main .section .search-series .search-result {
+  background-color: #333;
+  border-radius: 10px;
+  padding: 15px;
+  margin-top: 10px;
+}
+#page-main .section .search-series .search-result .add-series-btn-box {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+#page-main .section .search-series .search-result .add-series-btn-box .add-series-btn {
+  display: flex;
+  column-gap: 5px;
+  padding: 4px 9px;
+  border: 2px white solid;
+  border-radius: 5px;
+  background-color: white;
+  color: black;
+}
+#page-main .section .search-series .search-result .add-series-btn-box .add-series-btn:hover {
+  background-color: transparent;
+  color: white;
+}
+#page-main .section .search-series .search-result .add-series-btn-box .add-series-btn:hover i {
+  color: white;
+}
+#page-main .section .search-series .search-result table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+#page-main .section .search-series .search-result td,
+#page-main .section .search-series .search-result th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+#page-main .section .search-series .search-result td.series-title {
+  max-width: 300px;
+}
+#page-main .section .search-series .search-result td .actions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  column-gap: 10px;
+  width: 100%;
+}
+#page-main .section .search-series .search-result td .actions .delete-btn,
+#page-main .section .search-series .search-result td .actions .edit-btn {
+  background-color: transparent;
+}
+#page-main .section .search-series .search-result td .actions .edit-btn:hover {
+  transform: scale(1.1);
+}
+#page-main .section .search-series .search-result td .actions .delete-btn:hover {
+  transform: scale(1.1);
+}
+#page-main .section .search-series .search-result td .actions .delete-btn i {
+  color: red;
+}
+#page-main .section .search-series .search-result td .actions i {
+  font-size: 1.2rem;
+}
+#page-main .section .search-series .search-result tr:nth-child(even) {
+  background-color: #dddddd;
+}
+#page-main .section .search-series .search-result tr:nth-child(even) td {
+  color: black;
+}
+#page-main .section .search-series .search-result tr:nth-child(odd) .actions .edit-btn i {
+  color: white;
+}
+
+/*# sourceMappingURL=admin-page.css.map */
