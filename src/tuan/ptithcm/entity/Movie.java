@@ -35,7 +35,7 @@ public class Movie {
     private String posterUrl;
 
     @Column(name = "created_at", updatable = false)
-    private LocalDateTime createdAt = LocalDateTime.now();
+    private Timestamp createdAt = Timestamp.valueOf(LocalDateTime.now());
 
     @OneToMany(mappedBy = "movie", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Episode> episodes;
@@ -93,11 +93,11 @@ public class Movie {
         this.posterUrl = posterUrl;
     }
 
-    public LocalDateTime getCreatedAt() {
+    public Timestamp getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(LocalDateTime createdAt) {
+    public void setCreatedAt(Timestamp createdAt) {
         this.createdAt = createdAt;
     }
 
@@ -116,7 +116,6 @@ public class Movie {
     public void setGenres(List<Genre> genres) {
         this.genres = genres;
     }
-    
     public List<Comment> getComments() {
         return comments;
     }

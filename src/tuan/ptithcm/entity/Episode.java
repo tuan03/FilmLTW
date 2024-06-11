@@ -33,6 +33,9 @@ public class Episode {
 
     @Column(name = "views", nullable = false)
     private Integer views = 0;
+    
+    @Column(name = "title", length = 255)
+    private String title;
 
     @Column(name = "created_at", updatable = false)
     private Timestamp createdAt = Timestamp.valueOf(LocalDateTime.now());
@@ -77,6 +80,14 @@ public class Episode {
 
     public void setViews(Integer views) {
         this.views = views;
+    }
+    
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public Timestamp getCreatedAt() {

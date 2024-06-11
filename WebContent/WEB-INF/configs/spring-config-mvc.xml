@@ -23,7 +23,7 @@
 	<bean id="viewResolver" p:prefix="/WEB-INF/views/" p:suffix=".jsp"
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver" />
 	<context:component-scan
-		base-package="ptithcm.controller" />
+		base-package="ptithcm.controller,ptithcm.bean" />
 
 	<!-- Kết nối CSDL -->
 	<bean id="dataSource"
@@ -62,9 +62,33 @@
 		<mvc:interceptor>
 			<mvc:mapping path="/**" />
 			<mvc:exclude-mapping path="/login.htm" />
-			<mvc:exclude-mapping path="sign-up.htm" />
+			<mvc:exclude-mapping path="/sign-up.htm" />
+			<mvc:exclude-mapping path="/mail.htm" />
+			<mvc:exclude-mapping path="/test.htm" />
 			<bean class="ptithcm.interceptor.AuthenInterceptor" /> <!-- Định nghĩa Interceptor -->
 		</mvc:interceptor>
 	</mvc:interceptors>
+	
+	
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+	<property name="maxUploadSize" value="20971520" />
+	</bean>
+	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+		<property name="host" value="smtp.gmail.com"/>
+		<property name="port" value="465"/>
+		<property name="username" value="lthloilth@gmail.com"/>
+		<property name="password" value="zgydnepftfenxtgc"/>
+		<property name="defaultEncoding" value="UTF-8"/>
+		<property name="javaMailProperties">
+		<props>
+		<prop key="mail.smtp.auth">true</prop>
+		<prop key="mail.smtp.socketFactory.class">javax.net.ssl.SSLSocketFactory</prop>
+		<prop key="mail.smtp.socketFactory.port">465</prop>
+		<prop key="mail.smtp.starttls.enable">false</prop>
+		<prop key="mail.debug">true</prop>
+		</props>
+		</property>
+	</bean>
+	
 
 </beans>

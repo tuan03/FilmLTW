@@ -20,6 +20,7 @@ accountInfoForm.on("submit", function (e) {
         if (email_regex.test(email)) {
             $(this).find(".form-group.email .invalid-message").attr("hidden", true)
         } else {
+            valid = false
             $(this).find(".form-group.email .invalid-message").attr("hidden", false)
         }
     }

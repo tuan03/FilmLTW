@@ -129,34 +129,7 @@
                             </div>
                         </div>
                     </a>
-                    <a class="card" href="#">
-                        <div class="series-avatar-wrapper">
-                            <img src="https://cdn.mos.cms.futurecdn.net/36EFXMS9FEXVykNP8cFix7-1200-80.jpg"
-                                alt="Character">
-                            <div data-toggle="tooltip" data-placement="bottom" title="Lượt xem: 680.000"
-                                class="views-count">680.000</div>
-                        </div>
-                        <div class="card-info">
-                            <div class="card-title" data-toggle="tooltip" data-placement="bottom"
-                                title="Sinh vật ngoài hành tinh (Mùa 2)">
-                                Sinh vật ngoài hành tinh (Mùa 2)
-                            </div>
-                        </div>
-                    </a>
-                    <a class="card" href="#">
-                        <div class="series-avatar-wrapper">
-                            <img src="https://cdn.mos.cms.futurecdn.net/36EFXMS9FEXVykNP8cFix7-1200-80.jpg"
-                                alt="Character">
-                            <div data-toggle="tooltip" data-placement="bottom" title="Lượt xem: 680.000"
-                                class="views-count">680.000</div>
-                        </div>
-                        <div class="card-info">
-                            <div class="card-title" data-toggle="tooltip" data-placement="bottom"
-                                title="Sinh vật ngoài hành tinh (Mùa 2)">
-                                Sinh vật ngoài hành tinh (Mùa 2)
-                            </div>
-                        </div>
-                    </a>
+
                 </div>
             </div>
 

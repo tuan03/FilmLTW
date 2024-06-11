@@ -1,0 +1,101 @@
+@use "text-fonts";
+@use "colors";
+
+#page-main {
+    .liked-series-section {
+        width: 80%;
+        padding: 20px;
+        color: white;
+        background-color: colors.$avs-account-bg-cl;
+
+        .liked-series-title {
+            color: white;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        table.liked-series-list {
+            width: 100%;
+            border-collapse: collapse;
+
+            th,
+            td {
+                padding: 10px;
+                text-align: left;
+            }
+
+            td {
+                .cancel-like {
+                    button {
+                        display: flex;
+                        column-gap: 5px;
+                        align-items: center;
+                        height: 100%;
+                        color: white;
+                        background-color: transparent;
+                        cursor: pointer;
+                        transition: transform 0.2s;
+
+                        i {
+                            display: flex;
+                            font-size: 1.1rem;
+                        }
+
+                        &:hover {
+                            transform: scale(1.1);
+                        }
+                    }
+                }
+
+                .series-poster {
+                    display: block;
+                    overflow: hidden;
+                    width: 100px;
+                    aspect-ratio: 16/9;
+                    cursor: pointer;
+
+                    img {
+                        transition: transform 0.2s;
+                        width: 100%;
+                        height: auto;
+                    }
+
+                    &:hover {
+                        img {
+                            transform: scale(1.1);
+                        }
+                    }
+                }
+
+                .series-title {
+                    transition: color 0.2s;
+                    cursor: pointer;
+                    max-width: 300px;
+                    width: fit-content;
+                    color: white;
+
+                    &:hover {
+                        color: rgb(249, 37, 37);
+                    }
+                }
+            }
+
+            th {
+                background-color: #292b37;
+            }
+
+            tr:nth-child(even) {
+                background-color: #2f3142;
+            }
+
+            .bi-trash {
+                cursor: pointer;
+                color: #ff4b5c;
+            }
+
+            .bi-trash:hover {
+                color: #ff1e3c;
+            }
+        }
+    }
+}

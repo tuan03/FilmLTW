@@ -38,6 +38,7 @@ CREATE TABLE Episodes (
     episode_number INT NOT NULL,
     video_url VARCHAR(255) NOT NULL,
     views INT DEFAULT 0,
+    title VARCHAR(255) NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (movie_id) REFERENCES Movies(id)
 );
