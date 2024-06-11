@@ -27,6 +27,7 @@ changePasswordForm.on("submit", function (e) {
         if (password_regex.test(newPassword)) {
             $("#new-password").closest(".form-group").find(".invalid-message").attr("hidden", true)
         } else {
+            valid = false
             $("#new-password")
                 .closest(".form-group")
                 .find(".invalid-message .message")

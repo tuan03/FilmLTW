@@ -1,0 +1,77 @@
+#page-main .liked-series-section {
+  width: 80%;
+  padding: 20px;
+  color: white;
+  background-color: #212529;
+}
+#page-main .liked-series-section .liked-series-title {
+  color: white;
+  text-align: center;
+  margin-bottom: 20px;
+}
+#page-main .liked-series-section table.liked-series-list {
+  width: 100%;
+  border-collapse: collapse;
+}
+#page-main .liked-series-section table.liked-series-list th,
+#page-main .liked-series-section table.liked-series-list td {
+  padding: 10px;
+  text-align: left;
+}
+#page-main .liked-series-section table.liked-series-list td .cancel-like button {
+  display: flex;
+  column-gap: 5px;
+  align-items: center;
+  height: 100%;
+  color: white;
+  background-color: transparent;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+#page-main .liked-series-section table.liked-series-list td .cancel-like button i {
+  display: flex;
+  font-size: 1.1rem;
+}
+#page-main .liked-series-section table.liked-series-list td .cancel-like button:hover {
+  transform: scale(1.1);
+}
+#page-main .liked-series-section table.liked-series-list td .series-poster {
+  display: block;
+  overflow: hidden;
+  width: 100px;
+  aspect-ratio: 16/9;
+  cursor: pointer;
+}
+#page-main .liked-series-section table.liked-series-list td .series-poster img {
+  transition: transform 0.2s;
+  width: 100%;
+  height: auto;
+}
+#page-main .liked-series-section table.liked-series-list td .series-poster:hover img {
+  transform: scale(1.1);
+}
+#page-main .liked-series-section table.liked-series-list td .series-title {
+  transition: color 0.2s;
+  cursor: pointer;
+  max-width: 300px;
+  width: fit-content;
+  color: white;
+}
+#page-main .liked-series-section table.liked-series-list td .series-title:hover {
+  color: rgb(249, 37, 37);
+}
+#page-main .liked-series-section table.liked-series-list th {
+  background-color: #292b37;
+}
+#page-main .liked-series-section table.liked-series-list tr:nth-child(even) {
+  background-color: #2f3142;
+}
+#page-main .liked-series-section table.liked-series-list .bi-trash {
+  cursor: pointer;
+  color: #ff4b5c;
+}
+#page-main .liked-series-section table.liked-series-list .bi-trash:hover {
+  color: #ff1e3c;
+}
+
+/*# sourceMappingURL=liked-series-page.css.map */
