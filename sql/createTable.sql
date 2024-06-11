@@ -46,10 +46,12 @@ CREATE TABLE Comments (
     id INT AUTO_INCREMENT PRIMARY KEY,
     user_id INT NOT NULL,
     episode_id INT NOT NULL,
+    movie_id INT NOT NULL,
     content TEXT NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (user_id) REFERENCES Users(id),
-    FOREIGN KEY (episode_id) REFERENCES Episodes(id)
+    FOREIGN KEY (episode_id) REFERENCES Episodes(id),
+    FOREIGN KEY (movie_id) REFERENCES Movies(id)
 );
 
 CREATE TABLE Replies (
@@ -62,13 +64,4 @@ CREATE TABLE Replies (
     FOREIGN KEY (user_id) REFERENCES Users(id)
 );
 
-CREATE TABLE Likes (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    user_id INT NOT NULL,
-    movie_id INT NOT NULL,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    UNIQUE KEY (user_id, movie_id),
-    FOREIGN KEY (user_id) REFERENCES Users(id),
-    FOREIGN KEY (movie_id) REFERENCES Movies(id)
-);
 

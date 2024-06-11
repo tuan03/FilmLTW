@@ -41,7 +41,7 @@ public class Movie {
     private List<Episode> episodes;
 
     @OneToMany(mappedBy = "movie", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Like> likes;
+    private List<Comment> comments;
 
     @ManyToMany
     @JoinTable(
@@ -109,19 +109,19 @@ public class Movie {
         this.episodes = episodes;
     }
 
-    public List<Like> getLikes() {
-        return likes;
-    }
-
-    public void setLikes(List<Like> likes) {
-        this.likes = likes;
-    }
-
     public List<Genre> getGenres() {
         return genres;
     }
 
     public void setGenres(List<Genre> genres) {
         this.genres = genres;
+    }
+    
+    public List<Comment> getComments() {
+        return comments;
+    }
+
+    public void setComments(List<Comment> comments) {
+        this.comments = comments;
     }
 }

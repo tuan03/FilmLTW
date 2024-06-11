@@ -25,6 +25,12 @@ public class Comment {
     @ManyToOne
     @JoinColumn(name = "episode_id", nullable = false)
     private Episode episode;
+    
+    
+    @NotNull(message = "Movie is mandatory")
+    @ManyToOne
+    @JoinColumn(name = "movie_id", nullable = false)
+    private Movie movie;
 
     @NotNull(message = "Content is mandatory")
     @Size(min = 1, message = "Content should not be empty")
