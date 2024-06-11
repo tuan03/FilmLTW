@@ -31,8 +31,8 @@
                     </form>
 
 
-    <% if (session.getAttribute("User") != null) { %>    
-    
+    <c:if test="${not empty sessionScope.User}">    
+    				${sessionScope.User.email }
                     <!-- Nút user khi user đã đăng nhập -->
                     <div class="authenticated-user dropdown">
                         <div class="user-btn">
@@ -55,9 +55,11 @@
                         </ul>
                     </div>
                     
-                   <% } else { %>
-   <a href="/login" class="login-sign-up-btn" type="button">Đăng nhập / Đăng ký</a>
-    <% } %> 
+                </c:if>
+
+  <!--   <a href="/login" class="login-sign-up-btn" type="button">Đăng nhập / Đăng ký</a>-->
+
+     
                     
                 </div>
             </div>
