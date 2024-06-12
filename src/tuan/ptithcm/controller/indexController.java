@@ -18,10 +18,13 @@ import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpMethod;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import ptithcm.bean.Mailer;
+import ptithcm.dto.MovieWithViewsDTO;
 import ptithcm.entity.Movie;
 import ptithcm.entity.User;
 
@@ -31,16 +34,6 @@ public class indexController {
 	@Autowired 
 	SessionFactory factory;
 	
-//	@RequestMapping(value = "login", method = RequestMethod.GET)
-//	public String Glogin() {
-//		return "login";
-//	}
-//	@RequestMapping(value = "login", method = RequestMethod.POST)
-//	public String Plogin(HttpServletRequest request) {
-//		System.out.print(request.getParameter("email"));
-//		return "login";
-//	}
-//	
 	@Autowired
 	Mailer mailer;
 	
@@ -48,13 +41,53 @@ public class indexController {
 	public String indexr(HttpServletRequest request) {
 		return  "cinema";
 	}
+	@RequestMapping(value = "page", method = RequestMethod.GET)
+	@Transactional
+	public String homePage(@RequestParam("page") Long page,HttpServletRequest request, ModelMap model) {
+		Session session = factory.getCurrentSession();
+		
+		String hql2 = "SELECT new ptithcm.dto.MovieWithViewsDTO(m.id, m.title, m.posterUrl, SUM(e.views)) " +
+			       "FROM Movie m " +
+			       "JOIN m.episodes e " +
+			       "GROUP BY m.id, m.title " +
+			       "ORDER BY m.createdAt DESC";
+		List<MovieWithViewsDTO> newMovie = session.createQuery(hql2).list();
+		
+		int numPage = (newMovie.size()+7)/8;
+		model.addAttribute("numPage",numPage);
+		model.addAttribute("currentPage",page);
+		
+		List<MovieWithViewsDTO> result = newMovie.size() > page*8 ? newMovie.subList((int)(page-1)*8, (int)(page*8)) : newMovie.subList((int)(page-1)*8, newMovie.size()) ;
+		model.addAttribute("newMovie",result);
+		
+		return "homePage";
+	}
+	
+	
 	
 	@RequestMapping(value = "index", method = RequestMethod.GET)
 	@Transactional
-	public String indexx(HttpServletRequest request, ModelMap model) {
+	public String home(HttpServletRequest request, ModelMap model) {
 		Session session = factory.getCurrentSession();
-		List<Movie> top8_views_movies = session.createQuery("SELECT m FROM Movie m JOIN m.episodes e GROUP BY m.id ORDER BY SUM(e.views) DESC").list();
-		model.addAttribute("t8views",top8_views_movies);
+		String hql1 = "SELECT new ptithcm.dto.MovieWithViewsDTO(m.id, m.title, m.posterUrl, SUM(e.views)) " +
+		           "FROM Movie m JOIN m.episodes e " +
+		           "GROUP BY m.id, m.title " +
+		           "ORDER BY SUM(e.views) DESC";
+		List<MovieWithViewsDTO> top8_views_movies = session.createQuery(hql1).list();
+		
+		String hql2 = "SELECT new ptithcm.dto.MovieWithViewsDTO(m.id, m.title, m.posterUrl, SUM(e.views)) " +
+			       "FROM Movie m " +
+			       "JOIN m.episodes e " +
+			       "GROUP BY m.id, m.title " +
+			       "ORDER BY m.createdAt DESC";
+		List<MovieWithViewsDTO> newMovie = session.createQuery(hql2).list();
+		model.addAttribute("t8views",top8_views_movies.subList(0, 8));
+		
+		List<MovieWithViewsDTO> result = newMovie.size() > 8 ? newMovie.subList(0, 8) : newMovie;
+		model.addAttribute("newMovie",result);
+		int numPage = (newMovie.size()+7)/8;
+		model.addAttribute("numPage",numPage);
+		model.addAttribute("currentPage",1);
 		return "home";
 	}
 	
@@ -166,10 +199,8 @@ public class indexController {
 		try {
 			t= session.beginTransaction();
 		Movie movie = new Movie();
-//		movie.setId(Long.valueOf(1));
-//		movie.setTitle("Sua doi");
+		movie.setId(Long.valueOf(1));
 		Movie find = (Movie)session.get(Movie.class, movie.getId());
-//		session.update(movie);
 			t.commit();
 			System.out.print("Thành Công "+find.getTitle());
 		} catch(StaleStateException e) {

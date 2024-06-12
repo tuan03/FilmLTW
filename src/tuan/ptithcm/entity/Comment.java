@@ -61,6 +61,14 @@ public class Comment {
         this.user = user;
     }
 
+    public Movie getMovie() {
+        return movie;
+    }
+
+    public void setMovie(Movie movie) {
+        this.movie = movie;
+    }
+    
     public Episode getEpisode() {
         return episode;
     }

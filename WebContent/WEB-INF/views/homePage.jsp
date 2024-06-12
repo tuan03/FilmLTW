@@ -8,42 +8,11 @@
 <%@ include file="partical/header.jsp" %>
     <main id="page-main">
         <section class="series-list-section">
-            <!-- top most watched series //:MARK -->
-            <div class="series-list-box most-watched-in-week">
-                <div class="section-title">
-                    <div class="section-title-strong">
-                        Top 8 phim được xem nhiều nhất trong 3 tháng trở lại đây
-                    </div>
-                </div>
-				
-                <div class="series-list">
-                <c:forEach var="movie" items="${t8views}">
-           
-                    <a class="card" href="cinema.htm?id=${movie.movieId}">
-                        <div class="series-avatar-wrapper">
-                            <img src="${movie.poster_url}"
-                                alt="Character">
-                            <div data-toggle="tooltip" data-placement="bottom" title="Lượt xem: ${movie.totalViews}"
-                                class="views-count">${movie.totalViews}</div>
-                        </div>
-                        <div class="card-info">
-                            <div class="card-title" data-toggle="tooltip" data-placement="bottom"
-                                title="${movie.title}">
-                                ${movie.title}
-                            </div>
-                        </div>
-                    </a>
-
-        </c:forEach>
-  
-
-                </div>
-
             <!-- all series //:MARK -->
             <div class="series-list-box all-series">
                 <div class="section-title">
                     <div class="section-title-strong">
-                        Danh sách tải lên gần đây
+                        Trang ${currentPage }
                     </div>
                 </div>
 

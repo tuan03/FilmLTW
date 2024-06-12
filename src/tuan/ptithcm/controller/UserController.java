@@ -42,7 +42,7 @@ public class UserController {
 	@RequestMapping(value = "login",method = RequestMethod.POST)
 	@Transactional
     public String login(HttpSession session, ModelMap model,HttpServletRequest request,@RequestParam("password") String password,@RequestParam("email") String email) {
-		String hql = "SELECT new ptithcm.dto.UserDTO(u.email,u.fullname, u.role) FROM ptithcm.entity.User u WHERE u.email = :email AND u.password = :password";
+		String hql = "SELECT new ptithcm.dto.UserDTO(u.id,u.email,u.fullname, u.role) FROM ptithcm.entity.User u WHERE u.email = :email AND u.password = :password";
 		Session s = factory.getCurrentSession();
 		UserDTO user = (UserDTO) s.createQuery(hql)
 		                   .setParameter("email", email)

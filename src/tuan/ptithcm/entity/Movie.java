@@ -32,6 +32,7 @@ public class Movie {
 
     @Pattern(regexp = "^(http[s]?://.*)$", message = "Poster URL should be a valid URL")
     @Size(max = 255, message = "Poster URL should not be longer than 255 characters")
+    @Column(name = "poster_url")
     private String posterUrl;
 
     @Column(name = "created_at", updatable = false)
@@ -43,7 +44,7 @@ public class Movie {
     @OneToMany(mappedBy = "movie", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Comment> comments;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
         name = "MovieGenres",
         joinColumns = @JoinColumn(name = "movie_id"),
