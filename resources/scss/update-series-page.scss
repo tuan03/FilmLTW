@@ -1,0 +1,344 @@
+$avs-ep-active-cl: #00f4ff;
+$avs-ep-hover-cl: #ff2525;
+$avs-scrollbar-on-hover-cl: #999999;
+$avs-scrollbar-on-blur-cl: #99999955;
+$avs-series-info-bg-cl: #383838;
+$avs-series-info-regular-witdh: 880px;
+
+@mixin hover-to-update-styling {
+    border: 1px transparent solid;
+    padding: 3px 5px;
+
+    &:hover,
+    &:focus {
+        border: 1px #676767 solid;
+    }
+}
+
+@mixin scrollbar-styling {
+    &::-webkit-scrollbar {
+        /* Màu sắc thanh cuộn */
+        background-color: transparent;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        /* Màu sắc thanh trượt */
+        background-color: $avs-scrollbar-on-blur-cl;
+    }
+
+    &::-webkit-scrollbar {
+        width: 7px;
+        border-radius: 5px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        height: 20px;
+        border-radius: 10px;
+    }
+
+    &:hover {
+        &::-webkit-scrollbar-thumb {
+            /* Màu sắc thanh trượt */
+            background-color: $avs-scrollbar-on-hover-cl;
+        }
+    }
+}
+
+#page-main {
+    padding: 20px;
+
+    .series-info-section {
+        color: white;
+
+        .section-title-box {
+            display: flex;
+            column-gap: 20px;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #555;
+            padding-bottom: 5px;
+            margin-bottom: 10px;
+            padding-left: 10px;
+
+            .section-title {
+                font-size: 24px;
+            }
+        }
+
+        .series-info {
+            border-radius: 8px;
+            padding: 20px;
+            background-color: $avs-series-info-bg-cl;
+
+            .series-title {
+                font-size: 24px;
+                margin-bottom: 5px;
+
+                input {
+                    background-color: transparent;
+                    width: 100%;
+                    color: white;
+
+                    @include hover-to-update-styling;
+                }
+            }
+
+            .main-content {
+                display: flex;
+                margin-top: 20px;
+
+                .series-poster {
+                    width: 200px;
+                    border-radius: 8px;
+                    margin-right: 20px;
+                    height: fit-content;
+                }
+
+                .details {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: start;
+                    width: 100%;
+
+                    .select-genres-box {
+                        padding-left: 0;
+                        padding-right: 0;
+
+                        .select-genres-btn {
+                            background-color: white;
+                            border-color: white;
+                            color: black;
+                        }
+
+                        .dropdown-menu {
+                            .dropdown-item {
+                                cursor: pointer;
+                            }
+                        }
+                    }
+
+                    .episodes {
+                        background-color: #f00;
+                        color: #fff;
+                        padding: 2px 5px;
+                        border-radius: 5px;
+                        font-size: 13px;
+                        display: inline-block;
+                        margin-bottom: 10px;
+                    }
+
+                    .tags {
+                        display: flex;
+                        column-gap: 10px;
+                        align-items: center;
+                        margin-bottom: 15px;
+
+                        .tags-title {
+                            font-weight: bold;
+                        }
+
+                        .genres {
+                            span {
+                                background-color: #006666;
+                                color: #fff;
+                                padding: 5px 10px;
+                                border-radius: 5px;
+                                margin-right: 10px;
+                                font-size: 13px;
+                            }
+                        }
+
+                        .add-genre {
+                            display: flex;
+                            column-gap: 5px;
+                            align-items: center;
+                            border-radius: 5px;
+                            border: 2px white solid;
+
+                            i {
+                                display: flex;
+                            }
+
+                            &:hover {
+                                background-color: transparent;
+                                color: white;
+
+                                i {
+                                    color: white;
+                                }
+                            }
+                        }
+                    }
+
+                    .series-description {
+                        font-size: 15px;
+                        line-height: 1.6;
+                        height: 220px;
+                        width: 100%;
+                        overflow-y: auto;
+                        margin-top: 10px;
+                        color: white;
+                        background-color: transparent;
+
+                        @include scrollbar-styling;
+                        @include hover-to-update-styling;
+                    }
+                }
+            }
+
+            .submit-btn-box {
+                display: flex;
+                justify-content: space-between;
+                margin-top: 20px;
+
+                button {
+                    padding: 5px 20px;
+                    background-color: white;
+                    border-radius: 5px;
+                    font-weight: bold;
+                    width: 100%;
+                    border: 2px white solid;
+
+                    &:hover {
+                        background-color: transparent;
+                        color: white;
+                    }
+                }
+            }
+        }
+
+        .first-words {
+            padding: 5px 10px;
+            margin-bottom: 10px;
+            font-size: 0.9rem;
+            border-radius: 5px;
+            background-color: $avs-series-info-bg-cl;
+        }
+    }
+
+    .episodes-section {
+        border: 1px #555454 solid;
+        color: white;
+        margin-top: 20px;
+
+        .section-title {
+            display: inline-block;
+            font-size: 16px;
+            border-bottom: 2px solid #f00;
+            padding: 13px;
+            padding-bottom: 5px;
+        }
+
+        .total-videos {
+            font-size: 14px;
+            padding: 13px;
+            border: 1px #555454 solid;
+        }
+
+        .episodes-list {
+            display: flex;
+            flex-direction: column;
+            row-gap: 10px;
+            width: 100%;
+            padding: 13px;
+            border-radius: 8px;
+            height: 403px;
+            overflow-y: auto;
+
+            .episode {
+                display: flex;
+                height: 62px;
+                width: 100%;
+                cursor: pointer;
+                color: white;
+
+                .episode-number {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    font-weight: bold;
+                    background-color: #00000052;
+                    width: 105px;
+                    height: 100%;
+                    border-radius: 4px;
+                    margin-right: 10px;
+
+                    .value {
+                        transition: transform 0.2s;
+                    }
+                }
+
+                .episode-info {
+                    width: 100%;
+
+                    .episode-title {
+                        font-size: 14px;
+                        font-weight: bold;
+                        margin-bottom: 5px;
+                        white-space: pre-wrap;
+                        width: 100%;
+
+                        &.active {
+                            color: $avs-ep-active-cl;
+                        }
+                    }
+
+                    .episode-views {
+                        display: flex;
+                        line-height: 0.9rem;
+                        font-size: 12px;
+                        color: #bbb;
+                    }
+                }
+
+                &:hover {
+                    .episode-number {
+                        .value {
+                            transform: scale(1.5);
+                        }
+                    }
+
+                    .episode-info {
+                        .episode-title {
+                            color: $avs-ep-hover-cl;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+#chips-container {
+    margin-top: 10px;
+
+    .chip {
+        display: inline-flex;
+        align-items: center;
+        padding: 0.25rem 0.5rem;
+        font-size: 0.875rem;
+        border-radius: 16px;
+        cursor: pointer;
+        border-color: white;
+        color: white;
+        column-gap: 5px;
+
+        .btn-close {
+            margin-left: 0.25rem;
+        }
+
+        &:hover {
+            background-color: white;
+            color: black;
+        }
+
+        i {
+            display: flex;
+            color: red;
+
+            &:hover {
+                transform: scale(1.3);
+            }
+        }
+    }
+}

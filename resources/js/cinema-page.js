@@ -29,7 +29,7 @@ $("#make-comment-form").on("submit", function (e) {
     const form = e.target
     const formData = new FormData(form)
 
-    const comment = formData.get("make-comment")
+    const comment = formData.get("content")
 
     let valid = true
 
@@ -53,7 +53,7 @@ function replyComment(e) {
     const form = e.target
     const formData = new FormData(form)
 
-    const comment = formData.get("make-comment")
+    const comment = formData.get("content")
 
     let valid = true
 
