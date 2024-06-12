@@ -38,7 +38,7 @@ main .series-list-section .section-title .categories .option {
 }
 main .series-list-section .series-list-box .series-list {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(5, 1fr);
   column-gap: 10px;
   row-gap: 10px;
   padding: 15px;
@@ -60,7 +60,7 @@ main .series-list-section .series-list-box .series-list .card {
 }
 main .series-list-section .series-list-box .series-list .card .series-avatar-wrapper {
   width: 100%;
-  height: 100%;
+  height: 85%;
   position: relative;
 }
 main .series-list-section .series-list-box .series-list .card .series-avatar-wrapper img {

@@ -2,7 +2,9 @@ package ptithcm.controller;
 
 import java.io.IOException;
 import java.io.Serializable;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -22,8 +24,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import ptithcm.bean.Mailer;
+import ptithcm.dto.ContentDTO;
 import ptithcm.dto.MovieWithViewsDTO;
 import ptithcm.entity.Movie;
 import ptithcm.entity.User;
@@ -36,11 +40,7 @@ public class indexController {
 	
 	@Autowired
 	Mailer mailer;
-	
-	@RequestMapping(value = "/testc", method = RequestMethod.GET)
-	public String indexr(HttpServletRequest request) {
-		return  "cinema";
-	}
+
 	@RequestMapping(value = "page", method = RequestMethod.GET)
 	@Transactional
 	public String homePage(@RequestParam("page") Long page,HttpServletRequest request, ModelMap model) {
@@ -53,11 +53,11 @@ public class indexController {
 			       "ORDER BY m.createdAt DESC";
 		List<MovieWithViewsDTO> newMovie = session.createQuery(hql2).list();
 		
-		int numPage = (newMovie.size()+7)/8;
+		int numPage = (newMovie.size()+10)/10;
 		model.addAttribute("numPage",numPage);
 		model.addAttribute("currentPage",page);
 		
-		List<MovieWithViewsDTO> result = newMovie.size() > page*8 ? newMovie.subList((int)(page-1)*8, (int)(page*8)) : newMovie.subList((int)(page-1)*8, newMovie.size()) ;
+		List<MovieWithViewsDTO> result = newMovie.size() > page*10 ? newMovie.subList((int)(page-1)*10, (int)(page*10)) : newMovie.subList((int)(page-1)*10, newMovie.size()) ;
 		model.addAttribute("newMovie",result);
 		
 		return "homePage";
@@ -73,7 +73,7 @@ public class indexController {
 		           "FROM Movie m JOIN m.episodes e " +
 		           "GROUP BY m.id, m.title " +
 		           "ORDER BY SUM(e.views) DESC";
-		List<MovieWithViewsDTO> top8_views_movies = session.createQuery(hql1).list();
+		List<MovieWithViewsDTO> top10_views_movies = session.createQuery(hql1).list();
 		
 		String hql2 = "SELECT new ptithcm.dto.MovieWithViewsDTO(m.id, m.title, m.posterUrl, SUM(e.views)) " +
 			       "FROM Movie m " +
@@ -81,11 +81,11 @@ public class indexController {
 			       "GROUP BY m.id, m.title " +
 			       "ORDER BY m.createdAt DESC";
 		List<MovieWithViewsDTO> newMovie = session.createQuery(hql2).list();
-		model.addAttribute("t8views",top8_views_movies.subList(0, 8));
+		model.addAttribute("t8views",top10_views_movies.subList(0, 10));
 		
-		List<MovieWithViewsDTO> result = newMovie.size() > 8 ? newMovie.subList(0, 8) : newMovie;
+		List<MovieWithViewsDTO> result = newMovie.size() > 10 ? newMovie.subList(0, 10) : newMovie;
 		model.addAttribute("newMovie",result);
-		int numPage = (newMovie.size()+7)/8;
+		int numPage = (newMovie.size()+9)/10;
 		model.addAttribute("numPage",numPage);
 		model.addAttribute("currentPage",1);
 		return "home";
@@ -166,62 +166,5 @@ public class indexController {
 
 		mailer.send("lthloilth@gmail.com", "matrinh3@gmail.com", "Quên mật khẩu", emailBody);
 		return "home";
-	}
-	
-	@RequestMapping("query")
-	public String index() {
-		Session session = factory.getCurrentSession();
-		String HQL = "FROM User";
-		Query query = session.createQuery(HQL);
-//		List<User> list = query.list();
-//		if (list.isEmpty()) {
-//		    System.out.println("Không tìm thấy đối tượng nào phù hợp.");
-//		} else {
-//		    System.out.println(list); // In ra danh sách kết quả
-//		}
-		return "index";
-	}
-		
-	@RequestMapping("set")
-	public String setSession(HttpServletRequest request, HttpServletResponse response) throws IOException {
-		HttpSession session = request.getSession();
-	    session.setAttribute("tuann", "Tuấn nè");
-	    String htmlContent = "<html><head><title>Error</title></head><body><h1>Authentication Failed</h1><p>Please log in to access this page.</p></body></html>";
-        return "index";
-	}
-
-	@RequestMapping("test")
-	@Transactional
-	public String cud() {
-		Session session = factory.openSession();
-		Transaction t = null;
-		
-		try {
-			t= session.beginTransaction();
-		Movie movie = new Movie();
-		movie.setId(Long.valueOf(1));
-		Movie find = (Movie)session.get(Movie.class, movie.getId());
-			t.commit();
-			System.out.print("Thành Công "+find.getTitle());
-		} catch(StaleStateException e) {
-			if (t != null) {
-                t.rollback();
-            }
-			System.out.println("Xóa + cập nhật thật bại: " + e);
-		}catch(ConstraintViolationException e) {
-			if (t != null) {
-                t.rollback();
-            }
-			System.out.print("Lỗi Xung Đột" + e );
-		}
-		catch (Exception e) {
-			if (t != null) {
-                t.rollback();
-            }
-			System.out.println("Lỗi: " + e);
-		}  finally {
-			session.close();
-		}
-		return "index";
 	}
 }

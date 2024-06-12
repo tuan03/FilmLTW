@@ -58,21 +58,7 @@
 		transaction-manager="transactionManager" />
 		
 	
-	<mvc:interceptors>
-		<mvc:interceptor>
-			<mvc:mapping path="/**" />
-			<mvc:exclude-mapping path="/login.htm" />
-			<mvc:exclude-mapping path="/sign-up.htm" />
-			<mvc:exclude-mapping path="/mail.htm" />
-			<mvc:exclude-mapping path="/test.htm" />
-			<mvc:exclude-mapping path="/admin.htm" />
-			<mvc:exclude-mapping path="/upload.htm" />
-			<mvc:exclude-mapping path="/epupload.htm" />
-			<mvc:exclude-mapping path="/genre/**" />
-			
-			<bean class="ptithcm.interceptor.AuthenInterceptor" /> <!-- Định nghĩa Interceptor -->
-		</mvc:interceptor>
-	</mvc:interceptors>
+	
 	
 	
 	

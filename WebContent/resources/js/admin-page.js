@@ -83,7 +83,6 @@ const renderSeries = (series_list) => {
         result_table.appendChild(row)
     }
 }
-renderSeries(series_dataset)
 
 const filterSeries = debounce((value) => {
     if (value && value.length > 0) {

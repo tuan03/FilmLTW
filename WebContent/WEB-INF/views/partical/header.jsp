@@ -10,17 +10,28 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbar-categories">
-                <div class="search-box-navbar">
+                <div class="search-box-navbar" style="
+    justify-content: space-between;
+    width: 100%;">
 
 
     <c:if test="${not empty sessionScope.User}">    
-    				${sessionScope.User.email }
+					${sessionScope.User.role }
                     <!-- Nút user khi user đã đăng nhập -->
                     <div class="authenticated-user dropdown">
                         <div class="user-btn">
                             <i class="bi bi-person-fill"></i>
                         </div>
                         <ul class="dropdown-menu dropdown-menu-end">
+                        <c:if test="${sessionScope.User.role eq 'Admin'}">
+					        <li>
+                                <a href="admin.htm" class="dropdown-item">
+                                    <span style="color: red">Quản Lý</span>
+                                </a>
+                            </li>
+					    </c:if>
+                        
+                        
                             <li>
                                 <button type="button" data-bs-toggle="modal" data-bs-target="#logout-form-section"
                                     class="dropdown-item">
