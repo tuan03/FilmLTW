@@ -58,7 +58,7 @@ const renderSeries = (series_list) => {
     result_table.innerHTML = `
         <tr>
             <th>Tên phim</th>
-            <th>Số tập</th>
+            <th>Mô tả</th>
             <th>Ngày công chiếu</th>
             <th></th>
         </tr>`
@@ -110,18 +110,13 @@ $("#add-genre-btn").on("click", function (e) {
     const newGenreExist = $("#new-genre-input")
     if (newGenreExist.length === 0) {
         $(".genres").prepend(`
+        <form action="genre/add.htm" method="post" id="new-genre-form">
         <div class="genre">
-            <input class="editor" type="text" id="new-genre-input" placeholder="Nhập thể loại..." onblur="blurEditGenre(this)"
+            <input class="editor" type="text" name="content" id="new-genre-input" placeholder="Nhập thể loại..." onblur="blurEditGenre(this)"
                 onfocus="startEditGenre(this)" data-genre-id="1" data-genre-value="Hành động" />
-            <div class="actions" hidden>
-                <div class="save-action">
-                    <i class="bi bi-check-circle"></i>
-                </div>
-                <div class="delete-action">
-                    <i class="bi bi-trash3"></i>
-                </div>
-            </div>
-        </div>`)
+        </div></form>`)
         $("#new-genre-input").focus()
+
+        
     }
 })

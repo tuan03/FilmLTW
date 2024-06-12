@@ -11,7 +11,7 @@
             <div class="upload-video-container">
                 <h1 class="upload-video-title">Đăng tải phim</h1>
                 <p class="notice">Các trường với <span class="required">*</span> là bắt buộc</p>
-                <form action="upload.htm" method="post" id="upload-video-form" enctype="multipart/form-data">
+                <form action="movie/upload.htm" method="post" id="upload-video-form" enctype="multipart/form-data">
                     <div class="d-flex justify-content-between" style="column-gap: 20px;">
                         <div style="width: 30%;">
                             <div class="form-group movie-cover">
@@ -55,8 +55,8 @@
                                             
                                             <c:forEach var="genre" items="${genres }">
                                             <li>
-                                                <span class="dropdown-item" href="#" data-genre-id="${genre.id }"
-                                                    data-genre-label="Hành động">
+                                                <span class="dropdown-item" data-genre-id="${genre.id }"
+                                                    data-genre-label="${genre.name }">
                                                     ${genre.name }
                                                 </span>
                                             </li>

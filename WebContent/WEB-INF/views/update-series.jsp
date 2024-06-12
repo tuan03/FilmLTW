@@ -72,9 +72,24 @@
 				hidden />
 		</div>
 		<div class="upload-progress-bar"></div>
-		<div class="new-episode-title">
-			<input type="text" placeholder="Nhập tiêu đề cho tập mới ở đây..." />
-		</div>
+		<form action="eposide/upload.htm?id=${movie.id }" method="post" id="episode-info-form-after-upload" hidden enctype="multipart/form-data">
+                <div class="first-words">Nhập thông tin cho tập mới tải lên</div>
+                <div class="form-groups-container">
+                    <div class="form-group new-episode-url">
+                        <input type="text" placeholder="URL của video" name="urlVideo" readonly />
+                        <div class="invalid-message"></div>
+                    </div>
+                    <div class="form-group new-episode-title">
+                        <input type="text" placeholder="Nhập tiêu đề cho tập mới ở đây..." name="title" />
+                        <div class="invalid-message"></div>
+                    </div>
+                    <div class="form-group new-episode-ep-number">
+                        <input type="text" placeholder="Nhập số tập cho tập mới ở đây..." name="numberEp" />
+                        <div class="invalid-message"></div>
+                    </div>
+                </div>
+                <button class="save-data-btn" type="submit">Lưu thông tin</button>
+            </form>
 	</section>
 
 	<section class="episodes-section">

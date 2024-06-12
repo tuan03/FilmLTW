@@ -56,21 +56,12 @@ import ptithcm.utils.ExceptionHandlerUtil;
 public class eposidenController {
 	@Autowired 
 	SessionFactory factory;
-	@RequestMapping(value = "upload", method = RequestMethod.GET)
-	@Transactional
-	public String renderUpload(@RequestParam("id") Long idMovie,HttpServletRequest request, ModelMap model) {
-		Session session = factory.getCurrentSession();
-		Movie movie = (Movie) session.get(Movie.class, idMovie);
-		model.addAttribute("movie",movie);
-	    return "uploadEp";	
-	}
-	
 	@RequestMapping(value = "upload", method = RequestMethod.POST)
-	public String upload(@RequestParam("idMovie") Long idMovie,@RequestParam("urlVideo") String urlVideo,
-			@RequestParam("numberEp") String numberEp,
+	public String upload(@RequestParam("id") Long idMovie,@RequestParam("urlVideo") String urlVideo,
+			@RequestParam("numberEp") Integer numberEp,
 			@RequestParam("title") String title,
 			HttpServletRequest request, ModelMap model) {
-		
+		System.out.println(idMovie + "  " + urlVideo + "  " + numberEp + "  " + title);
 		Session session = factory.openSession();
 		Transaction t = null;
 		
@@ -80,6 +71,7 @@ public class eposidenController {
 		Episode ep = new Episode();
 		ep.setVideoUrl(urlVideo);
 		ep.setTitle(title);
+		ep.setEpisodeNumber(numberEp);
 		
 		Movie movie = (Movie) session.get(Movie.class, idMovie);
 		ep.setMovie(movie);
@@ -91,6 +83,6 @@ public class eposidenController {
         } finally {
             session.close();
         }
-		return "forward:uploadEp";
+		return "redirect:/admin/update-series.htm?id="+idMovie;
 	}
 }

@@ -25,7 +25,7 @@ public class ExceptionHandlerUtil {
         } else if (e instanceof ConstraintViolationException) {
             errorMessage = handleJavaConstraintViolationException((ConstraintViolationException) e);
         }
-
+        System.out.println(errorMessage);
         model.addAttribute("errorMessage", errorMessage);
     }
 

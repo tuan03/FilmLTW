@@ -40,29 +40,19 @@
 		</div>
 		<div class="section">
 			<div class="section-title-box">
-				<h2 class="section-title">Tìm kiếm phim</h2>
+				<h2 class="section-title">Danh sách phim</h2>
 			</div>
 			<div class="search-series">
-				<div class="form-group">
-					<div class="input-wrapper">
-						<div class="search-icon">
-							<i class="bi bi-search"></i>
-						</div>
-						<input id="search-series-input"
-							placeholder="Tìm phim theo tên phim..." name="series-name"
-							autocomplete="on">
-					</div>
-				</div>
 				<div class="search-result">
 					<div class="add-series-btn-box">
-						<span></span> <a class="add-series-btn" href="#"> <i
+						<span></span> <a class="add-series-btn" href="movie/upload.htm"> <i
 							class="bi bi-plus-circle"></i> <span>Thêm phim</span>
 						</a>
 					</div>
 					<table id="search-series-result-table">
 						<tr>
 							<th>Tên phim</th>
-							<th>Số tập</th>
+							<th>Mô tả</th>
 							<th>Ngày công chiếu</th>
 							<th></th>
 						</tr>
@@ -74,10 +64,10 @@
 								<td>${movie.releaseDate }</td>
 								<td>
 									<div class="actions">
-										<button class="delete-btn" data-bs-toggle="tooltip"
+										<a href="movie/del.htm?id=${movie.id }" class="delete-btn" data-bs-toggle="tooltip"
 											data-bs-placement="bottom" title="Xóa phim">
 											<i class="bi bi-trash3"></i>
-										</button>
+										</a>
 										<a class="edit-btn" data-bs-toggle="tooltip"
 											data-bs-placement="bottom" title="Chỉnh sửa phim"
 											href="admin/update-series.htm?id=${movie.id }"> <i

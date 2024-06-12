@@ -46,6 +46,7 @@ import ptithcm.entity.Comment;
 import ptithcm.entity.Episode;
 import ptithcm.entity.Genre;
 import ptithcm.entity.Movie;
+import ptithcm.entity.MovieGenre;
 import ptithcm.entity.Reply;
 import ptithcm.entity.User;
 import ptithcm.utils.ExceptionHandlerUtil;
@@ -59,6 +60,9 @@ public class movieController {
 	@Autowired
 	ServletContext context;
 	
+	String hostServer = "http://localhost:8080/LTW";
+	String folFile = "/resources/video"; 
+	
 	@Autowired
 	Mailer mailer;
 	@RequestMapping(value = "upload", method = RequestMethod.GET)
@@ -70,6 +74,26 @@ public class movieController {
 	    return "upload";	
 	}
 	
+	@RequestMapping(value = "del", method = RequestMethod.GET)
+	@Transactional
+	public String uploadRender(@RequestParam("id") Long idMovie,HttpServletRequest request, ModelMap model) {
+		Session session = factory.openSession();
+        Transaction transaction = null;
+        try {
+            transaction = session.beginTransaction();
+            Movie m = new Movie();
+            m.setId(idMovie);
+            session.delete(m);
+            transaction.commit();
+            return "redirect:/admin.htm";
+        } catch (Exception e) {
+            ExceptionHandlerUtil.handleException(transaction, e, model);
+        } finally {
+            session.close();
+        }
+        return "forward:/admin.htm";
+	}
+	
 	@RequestMapping(value = "upload", method = RequestMethod.POST)
 	@Transactional
 	public String upload(@RequestParam("movie-cover") MultipartFile photo,
@@ -79,10 +103,11 @@ public class movieController {
 			@RequestParam("genres") String genres
 			,HttpServletRequest request, ModelMap model) {
 		
-		System.out.println(description + ' ' + releaseDate + ' ' + genres);
 		if(photo.isEmpty()) {
 			model.addAttribute("errorMessage","Vui lòng chọn ảnh !");
 		} else {
+			Session session = null;
+			Transaction transaction = null;
 			try {
 			if (!photo.getContentType().startsWith("image")) {
                 model.addAttribute("errorMessage", "Ảnh phải là file hình ảnh !");
@@ -90,18 +115,28 @@ public class movieController {
             }
 			
 			
-//			String directoryPath ="D:\\LAMVIEC\\LTW\\LTW\\WebContent\\resources\\img\\";
-			String directoryPath = context.getRealPath("/resources/img/");
+
+			String directoryPath = context.getRealPath(folFile);
             File directory = new File(directoryPath);
             
             // Tạo thư mục nếu không tồn tại
             if (!directory.exists()) {
                 directory.mkdirs();
             }
-			String nameFile = photo.getOriginalFilename();
-            String photoPath = directoryPath + nameFile;
-            photo.transferTo(new File(photoPath));
-            System.out.println(photoPath);
+            String originalFilename = photo.getOriginalFilename();
+            String extension = originalFilename.substring(originalFilename.lastIndexOf('.'));
+            String fileNameWithoutExtension = originalFilename.substring(0, originalFilename.lastIndexOf('.'));
+            String sanitizedFilename = fileNameWithoutExtension.replaceAll("[^a-zA-Z0-9.-]", ""); // Xóa tất cả các ký tự không phải là chữ cái, số, dấu gạch ngang hoặc dấu chấm
+            
+            long currentTimeMillis = System.currentTimeMillis(); // Lấy thời gian hiện tại
+            String newNameFile = sanitizedFilename + currentTimeMillis; // tên tệp kết hợp với thời gian
+
+            String filePath = directoryPath + File.separator + newNameFile + extension;
+            photo.transferTo(new File(filePath));
+            
+            String url = hostServer + folFile +"/" + newNameFile + extension;
+            
+            
 
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
 
@@ -111,29 +146,42 @@ public class movieController {
             // Chuyển đổi LocalDateTime thành Timestamp
             Timestamp timestamp = Timestamp.valueOf(dateTime);
             
+           
             
-            Movie movie = new Movie();
-            movie.setDescription(description);
-            movie.setReleaseDate(timestamp);
-            movie.setTitle(title);
-            movie.setPosterUrl("http://localhost:8080/LTW/files/"+nameFile+".htm");
+            
             List<Long> ids = Arrays.stream(genres.split(" "))
                     .map(Long::parseLong)
                     .collect(Collectors.toList());
             
-            Session session = factory.openSession();
-            
-            List<Genre> genresList = session.createQuery("FROM Genre WHERE id IN (:ids)").setParameterList("ids", ids).list();
-            movie.setGenres(genresList);
+            session = factory.openSession();
+            transaction = session.beginTransaction();
+            Movie movie = new Movie();
+            movie.setDescription(description);
+            movie.setReleaseDate(timestamp);
+            movie.setTitle(title);
+            movie.setPosterUrl(url);
             
             session.save(movie);
+            
+            for(Long idGenre : ids) {
+            	MovieGenre mo_gen = new MovieGenre();
+            	Genre gen = (Genre)session.get(Genre.class, idGenre);
+            	mo_gen.setGenre(gen);
+            	mo_gen.setMovie(movie);
+            	session.save(mo_gen);
+            }
+            transaction.commit();
+           
             
             
 			return "upload";
 		}
 		catch(Exception e) {
+			transaction.rollback();
 			System.out.print(e);
 			model.addAttribute("errorMessage", "Lỗi !");
+		} finally {
+			session.close();
 		}
 		}
 		return "upload";

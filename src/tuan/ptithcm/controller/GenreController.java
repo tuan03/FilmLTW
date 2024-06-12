@@ -77,7 +77,11 @@ public class GenreController {
             transaction = session.beginTransaction();
             Genre genre = new Genre();
             genre.setName(titleD.getContent());
+            
+            
             session.save(genre);
+            
+            
             transaction.commit();
             return "redirect:/admin.htm";
         } catch (Exception e) {
