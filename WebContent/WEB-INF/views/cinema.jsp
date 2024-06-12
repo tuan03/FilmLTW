@@ -72,7 +72,6 @@
                         <button data-bs-toggle="tooltip" data-bs-placement="bottom" title="Thích phim">
                             <i class="bi bi-heart"></i>
                         </button>
-                        <span data-bs-toggle="tooltip" data-bs-placement="bottom" title="Số lượt thích">491</span>
                     </div>
                     <div class="main-content">
                         <img class="series-poster"

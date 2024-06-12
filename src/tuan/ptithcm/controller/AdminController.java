@@ -90,37 +90,17 @@ public class AdminController {
 		Movie movieFindbyId = (Movie) session.get(Movie.class, movieId);
 		movieFindbyId.setTitle(movie.getTitle());
 		movieFindbyId.setDescription(movie.getDescription());
-		List<Genre> genres = null;
-		Movie fetchedMovie = null;
-		String[] genresToUpdate = movie.getGenres().split(",");
-		List<String> list = Arrays.asList(genresToUpdate);
+		
 		try {
 			t = session.beginTransaction();
 			session.update(movieFindbyId);
-			for (String genre : list) {
-				MovieGenre movieGenre = new MovieGenre();
-				Genre genreToSet = new Genre();
-				genreToSet.setId(Long.parseLong(genre));
-				Movie movieToSet = new Movie();
-				movieToSet.setId(movieId);
-				movieGenre.setGenre(genreToSet);
-				movieGenre.setMovie(movieToSet);
-				session.save(movieGenre);
-			}
-			genres = session.createQuery("FROM Genre").list();
-			String hql = "SELECT DISTINCT m FROM Movie m " + "LEFT JOIN FETCH m.episodes " + "LEFT JOIN m.genres "
-					+ "WHERE m.id = :movieId";
-			fetchedMovie = (Movie) session.createQuery(hql).setParameter("movieId", movieId).uniqueResult();
 			t.commit();
 		} catch (Exception e) {
 			t.rollback();
 		} finally {
 			session.close();
 		}
-		model.addAttribute("movie", movieFindbyId);
-		model.addAttribute("genres", genres);
-		model.addAttribute("movieEpisodes", fetchedMovie.getEpisodes());
-		model.addAttribute("movieGenres", fetchedMovie.getGenres());
-		return "update-series";
+
+		return "redirect:/admin/update-series.htm?id="+movieId;
 	}
 }

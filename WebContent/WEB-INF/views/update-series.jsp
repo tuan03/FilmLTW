@@ -29,25 +29,6 @@
 								<span>${genre.name }</span>
 							</c:forEach>
 						</div>
-						<button type="button" class="add-genre" onclick="addGenres(this)"
-							data-type-is-add="true">
-							<i class="bi bi-plus-circle-fill"></i> <span>Thêm</span>
-						</button>
-					</div>
-					<div class="select-genres-box container" hidden>
-						<div class="dropdown">
-							<button
-								class="select-genres-btn btn btn-secondary dropdown-toggle"
-								type="button" data-bs-toggle="dropdown">Chọn các thể
-								loại cho phim</button>
-							<ul class="dropdown-menu">
-								<c:forEach var="genre" items="${genres }">
-									<li><span class="dropdown-item"
-										data-genre-id="${genre.id }" data-genre-label="${genre.name }">${genre.name }</span></li>
-								</c:forEach>
-							</ul>
-						</div>
-						<div id="chips-container" class="d-flex flex-wrap"></div>
 					</div>
 					<textarea name="description" class="series-description">${movie.description }</textarea>
 				</div>

@@ -5,6 +5,8 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
+import org.hibernate.validator.constraints.NotBlank;
+
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -17,6 +19,7 @@ public class Movie {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotBlank(message = "Tiêu đề phim hông thể để trống")
     @NotNull(message = "Title is mandatory")
     @Size(max = 255, message = "Title should not be longer than 255 characters")
     @Column(nullable = false)

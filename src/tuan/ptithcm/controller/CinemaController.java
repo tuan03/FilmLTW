@@ -49,8 +49,10 @@ public class CinemaController {
 	@RequestMapping(value = "cinema", method = RequestMethod.GET)
 	@Transactional
 	public String cinema(@RequestParam("id") Long idMovie, @RequestParam(value = "ep", defaultValue = "1") Integer epId, HttpServletRequest request, ModelMap model) {
-
-	    Session session = factory.getCurrentSession();
+		Session session = factory.openSession();
+		Transaction trans = session.beginTransaction();
+		try {
+	    
 
 	 // Lấy thông tin của bộ phim và các mối quan hệ của nó (episodes, comments, genres)
 	    String hql = "SELECT DISTINCT m FROM Movie m " +
@@ -65,6 +67,7 @@ public class CinemaController {
 
 	    if(movie.getEpisodes().size() > 0) {
 	    	Episode selectedEpisode = movie.getEpisodes().get(epId-1);
+	    	selectedEpisode.setViews(selectedEpisode.getViews()+1);
 	    	model.addAttribute("selectedEpisode", selectedEpisode);
 	    } else {
 	    	model.addAttribute("selectedEpisode", null);
@@ -84,12 +87,17 @@ public class CinemaController {
 	    List<Comment> comment = session.createQuery(hql2)
                 .setParameter("movieId", idMovie).list();
 	    
-	    
+	    trans.commit();
 	    model.addAttribute("movie", movie);
 	    model.addAttribute("comment", comment);
 	    
 	    model.addAttribute("totalViews", totalViews);
-
+		} catch(Exception e) {
+			trans.rollback();
+			ExceptionHandlerUtil.handleException(trans, e, model);
+		} finally {
+			session.close();
+		}
 	    return "cinema";
 	}
 	

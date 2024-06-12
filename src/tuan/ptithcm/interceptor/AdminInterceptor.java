@@ -6,20 +6,25 @@ import javax.servlet.http.HttpSession;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
+import ptithcm.dto.UserDTO;
 import ptithcm.entity.User;
 
 public class AdminInterceptor extends HandlerInterceptorAdapter {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
     	HttpSession session = request.getSession();
-    	User value = (User)session.getAttribute("User");
-    	if (value != null) {
+    	
+    	UserDTO value = (UserDTO)session.getAttribute("User");
+    	if (value != null && value.getRole() == User.Role.Admin) {
     	    return true;
     	} else {
-    		response.sendRedirect(request.getContextPath() + "/login.htm"); 
+    		int errorCode = HttpServletResponse.SC_FORBIDDEN;
+            
+            // Trả về mã lỗi và thông điệp tương ứng
+            response.sendError(errorCode, "Trang này không được phép truy cập.");
     		return false;
     	}
-    }
+    } 
     
     @Override
     public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {

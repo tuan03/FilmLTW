@@ -59,7 +59,30 @@
 		
 	
 	
-	
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/**" />
+			<mvc:exclude-mapping path="/login.htm" />
+			<mvc:exclude-mapping path="/sign-up.htm" />
+			<mvc:exclude-mapping path="/forgot-password.htm" />
+			<mvc:exclude-mapping path="/admin.htm" />
+			<mvc:exclude-mapping path="/admin/**" />
+			<mvc:exclude-mapping path="/movie/**" />
+			<mvc:exclude-mapping path="/genre/**" />
+			<mvc:exclude-mapping path="/eposide/**" />
+			
+			<bean class="ptithcm.interceptor.AuthenInterceptor" /> <!-- Định nghĩa Interceptor -->
+		</mvc:interceptor>
+		<mvc:interceptor>
+			<mvc:mapping path="/admin.htm" />
+			<mvc:mapping path="/admin/**" />
+			<mvc:mapping path="/movie/**" />
+			<mvc:mapping path="/genre/**" />
+			<mvc:mapping path="/eposide/**" />
+			<bean class="ptithcm.interceptor.AdminInterceptor" /> <!-- Định nghĩa Interceptor -->
+		</mvc:interceptor>
+		
+	</mvc:interceptors>
 	
 	
 	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">

@@ -71,32 +71,10 @@ $("#update-series-form").on("submit", function (e) {
 
     let valid = true;
 
-    if (!title) {
-        valid = false;
-        toastr.error("Không thể thực hiện cập nhật phim!");
-    }
-    if (!description) {
-        valid = false;
-        toastr.error("Không thể thực hiện cập nhật phim!");
-    }
-    if (genresPicked.values.length === 0) {
-        valid = false;
-        toastr.error("Không thể thực hiện cập nhật phim!");
-    }
 
-    if (valid) {
-        let genresInput = document.querySelector('input[name="genres"]');
-        if (!genresInput) {
-            genresInput = document.createElement("input");
-            genresInput.type = "hidden";
-            genresInput.name = "genres";
-            
-            console.log(">>> genres join >>>", genresPicked.values.join(","))
-            genresInput.value = genresPicked.values.join(",");
-            form.appendChild(genresInput);
-        }
+   
         form.submit();
-    }
+    
 });
 
 const uploadNewEpisodeBox = document.querySelector(

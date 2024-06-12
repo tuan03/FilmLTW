@@ -1,35 +1,24 @@
 package ptithcm.entity;
 
+import java.io.Serializable;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "MovieGenres")
-public class MovieGenre {
-
+public class MovieGenre implements Serializable{
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
-    @NotNull(message = "Movie is mandatory")
     @ManyToOne
     @JoinColumn(name = "movie_id", nullable = false)
     private Movie movie;
 
-    @NotNull(message = "Genre is mandatory")
+    @Id
     @ManyToOne
     @JoinColumn(name = "genre_id", nullable = false)
     private Genre genre;
 
     // Getters and Setters
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public Movie getMovie() {
         return movie;
