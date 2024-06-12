@@ -110,6 +110,12 @@ const uploadFileOnDone = () => {}
 
 const MAX_CHARS_OF_FILE_NAME = 100
 
+const createFormAfterUploading = ({ videoURL }) => {
+    const formAfterUploading = document.getElementById("episode-info-form-after-upload")
+    formAfterUploading.querySelector(".form-group.new-episode-url input").value = videoURL
+    formAfterUploading.hidden = false
+}
+
 const uploadFileHandler = (file) => {
     let fileName = file.name
     if (fileName.length >= MAX_CHARS_OF_FILE_NAME) {
@@ -138,14 +144,16 @@ const uploadFileHandler = (file) => {
     xhr.addEventListener("load", () => {
         const status = xhr.status
         if (status >= 200 && status < 300) {
-            const { docInfo } = JSON.parse(xhr.responseText)
-            uploadFileOnDone({
-                id: docInfo.id,
-                pagesCount: docInfo.pagesCount,
-                name: docInfo.name,
-            })
+            const { error, result } = JSON.parse(xhr.responseText)
+            if (result) {
+                toastr.success("Đã tải tập mới lên thành công!")
+                createFormAfterUploading({ videoURL: result })
+            } else {
+                toastr.error(error)
+            }
         } else {
             renderProgressBar_failToUploadFile({ fileName })
+            toastr.error("Không thể tập mới lên!")
         }
     })
 
@@ -179,3 +187,36 @@ const updateEpisode = (e) => {
         toastr.warning("Không thể chỉnh sửa tập phim")
     }
 }
+
+$("#episode-info-form-after-upload").on("submit", function (e) {
+    e.preventDefault()
+
+    const form = e.target
+    const formData = new FormData(form)
+
+    const urlVideo = formData.get("urlVideo")
+    const title = formData.get("title")
+    const numberEp = formData.get("numberEp")
+    console.log(">>> data before send to BE >>>", { urlVideo, title, numberEp })
+
+    let valid = true
+
+    if (!title) {
+        valid = false
+        $(this).find(".form-group.new-episode-title .invalid-message").attr("hidden", false)
+    } else {
+        $(this).find(".form-group.new-episode-title .invalid-message").attr("hidden", true)
+    }
+    if (!numberEp) {
+        valid = false
+        $(this).find(".form-group.new-episode-ep-number .invalid-message").attr("hidden", false)
+    } else {
+        $(this).find(".form-group.new-episode-ep-number .invalid-message").attr("hidden", true)
+    }
+
+    if (valid) {
+        form.submit()
+    } else {
+        toastr.error("Không thể cập nhật thông tin!")
+    }
+})
