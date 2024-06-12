@@ -18,7 +18,6 @@ public class Genre {
     private Long id;
 
     @NotNull(message = "Name is mandatory")
-    @Pattern(regexp = "^[\\w\\s]{1,255}$", message = "Name should only contain letters, numbers, and spaces, and be up to 255 characters long")
     @Size(max = 255, message = "Name should not be longer than 255 characters")
     @Column(nullable = false)
     private String name;

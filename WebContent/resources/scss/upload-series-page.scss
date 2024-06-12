@@ -1,0 +1,177 @@
+@use "colors";
+@use "text-fonts";
+
+@mixin required-dot-styling {
+    color: red;
+    font-size: 1.1rem;
+}
+
+#page-main {
+    color: white;
+
+    .upload-video-container {
+        padding: 20px;
+        background-color: transparent;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+
+        .notice {
+            margin: 0 20px 20px;
+            text-align: center;
+
+            .required {
+                @include required-dot-styling;
+            }
+        }
+    }
+
+    .upload-video-title {
+        text-align: center;
+        margin-bottom: 20px;
+        color: #fff;
+        font-weight: bold;
+        text-transform: uppercase;
+    }
+}
+
+#upload-video-form {
+    .form-group {
+        margin-bottom: 20px;
+
+        &.movie-genre {
+            .select-genres-box {
+                padding-left: 0;
+                padding-right: 0;
+
+                .select-genres-btn {
+                    background-color: white;
+                    border-color: white;
+                    color: black;
+                }
+
+                .dropdown-menu {
+                    .dropdown-item {
+                        cursor: pointer;
+                    }
+                }
+            }
+        }
+
+        .invalid-message {
+            color: red;
+            margin-top: 3px;
+            padding-left: 5px;
+            font-size: 0.9rem;
+        }
+
+        .required {
+            @include required-dot-styling;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            color: #fff;
+            padding-left: 5px;
+        }
+
+        input[type="text"],
+        input[type="file"],
+        input[type="date"],
+        textarea,
+        select {
+            width: 100%;
+            padding: 10px;
+            margin-top: 3px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        textarea {
+            resize: vertical;
+        }
+
+        button {
+            display: inline-block;
+            width: 100%;
+            padding: 8px;
+            background-color: colors.$avs-primary-cl;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            font-weight: bold;
+            border: 3px colors.$avs-primary-cl solid;
+        }
+
+        button:hover {
+            background-color: transparent;
+            color: colors.$avs-primary-cl;
+        }
+    }
+}
+
+#movie-cover-preview {
+    margin-top: 20px;
+    position: relative;
+
+    .movie-cover-preview {
+        width: 100%;
+    }
+
+    .cancel-movie-cover-btn {
+        position: absolute;
+        top: 0;
+        right: 0;
+        top: -10px;
+        right: -10px;
+        cursor: pointer;
+
+        i {
+            display: flex;
+            color: red;
+            font-size: 1.2rem;
+        }
+
+        &:hover {
+            transform: scale(1.1);
+        }
+    }
+}
+
+#chips-container {
+    margin-top: 10px;
+
+    .chip {
+        display: inline-flex;
+        align-items: center;
+        padding: 0.25rem 0.5rem;
+        font-size: 0.875rem;
+        border-radius: 16px;
+        cursor: pointer;
+        border-color: white;
+        color: white;
+        column-gap: 5px;
+
+        .btn-close {
+            margin-left: 0.25rem;
+        }
+
+        &:hover {
+            background-color: white;
+            color: black;
+        }
+
+        i {
+            display: flex;
+            color: red;
+
+            &:hover {
+                transform: scale(1.3);
+            }
+        }
+    }
+}

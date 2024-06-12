@@ -18,7 +18,6 @@ public class Movie {
     private Long id;
 
     @NotNull(message = "Title is mandatory")
-    @Pattern(regexp = "^[\\w\\s]{1,255}$", message = "Title should only contain letters, numbers, and spaces, and be up to 255 characters long")
     @Size(max = 255, message = "Title should not be longer than 255 characters")
     @Column(nullable = false)
     private String title;

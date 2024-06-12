@@ -65,6 +65,8 @@
 			<mvc:exclude-mapping path="/sign-up.htm" />
 			<mvc:exclude-mapping path="/mail.htm" />
 			<mvc:exclude-mapping path="/test.htm" />
+			<mvc:exclude-mapping path="/admin.htm" />
+			<mvc:exclude-mapping path="/genre/**" />
 			<bean class="ptithcm.interceptor.AuthenInterceptor" /> <!-- Định nghĩa Interceptor -->
 		</mvc:interceptor>
 	</mvc:interceptors>
