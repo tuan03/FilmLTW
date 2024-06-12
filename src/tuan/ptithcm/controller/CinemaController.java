@@ -63,8 +63,12 @@ public class CinemaController {
 	    
 	    Collections.sort(movie.getEpisodes(), Comparator.comparingInt(Episode::getEpisodeNumber));
 
-	    
-	    Episode selectedEpisode = movie.getEpisodes().get(epId-1);
+	    if(movie.getEpisodes().size() > 0) {
+	    	Episode selectedEpisode = movie.getEpisodes().get(epId-1);
+	    	model.addAttribute("selectedEpisode", selectedEpisode);
+	    } else {
+	    	model.addAttribute("selectedEpisode", null);
+	    }
 
 	    long totalViews = 0;
 	    for (Episode episode : movie.getEpisodes()) {
@@ -83,7 +87,7 @@ public class CinemaController {
 	    
 	    model.addAttribute("movie", movie);
 	    model.addAttribute("comment", comment);
-	    model.addAttribute("selectedEpisode", selectedEpisode);
+	    
 	    model.addAttribute("totalViews", totalViews);
 
 	    return "cinema";

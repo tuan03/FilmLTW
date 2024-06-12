@@ -110,7 +110,7 @@ const uploadFileOnDone = () => {}
 
 const MAX_CHARS_OF_FILE_NAME = 100
 
-const uploadFileHandler = (file) => {
+const uploadFileHandler = (file,title) => {
     let fileName = file.name
     if (fileName.length >= MAX_CHARS_OF_FILE_NAME) {
         const splitName = fileName.split(".")
@@ -118,7 +118,7 @@ const uploadFileHandler = (file) => {
     }
 
     const xhr = new XMLHttpRequest()
-    xhr.open("POST", "/upload-doc", true)
+    xhr.open("POST", "uploadEp.htm", true)
     xhr.upload.addEventListener("progress", ({ loaded, total }) => {
         const fileLoaded = Math.floor((loaded / total) * 100)
         const fileTotal = Math.floor(total / 1000)
@@ -146,11 +146,13 @@ const uploadFileHandler = (file) => {
             })
         } else {
             renderProgressBar_failToUploadFile({ fileName })
+            toastr.eror("Không thể hoàn tất tải video lên!")
         }
     })
 
     const data = new FormData()
     data.append("file", file)
+    data.append("title", title)
 
     xhr.send(data)
 }

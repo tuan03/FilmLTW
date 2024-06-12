@@ -48,7 +48,7 @@ public class indexController {
 		
 		String hql2 = "SELECT new ptithcm.dto.MovieWithViewsDTO(m.id, m.title, m.posterUrl, SUM(e.views)) " +
 			       "FROM Movie m " +
-			       "JOIN m.episodes e " +
+			       "LEFT JOIN m.episodes e " +
 			       "GROUP BY m.id, m.title " +
 			       "ORDER BY m.createdAt DESC";
 		List<MovieWithViewsDTO> newMovie = session.createQuery(hql2).list();
@@ -77,7 +77,7 @@ public class indexController {
 		
 		String hql2 = "SELECT new ptithcm.dto.MovieWithViewsDTO(m.id, m.title, m.posterUrl, SUM(e.views)) " +
 			       "FROM Movie m " +
-			       "JOIN m.episodes e " +
+			       "LEFT JOIN m.episodes e " +
 			       "GROUP BY m.id, m.title " +
 			       "ORDER BY m.createdAt DESC";
 		List<MovieWithViewsDTO> newMovie = session.createQuery(hql2).list();

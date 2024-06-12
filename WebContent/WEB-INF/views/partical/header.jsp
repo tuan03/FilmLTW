@@ -10,25 +10,7 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbar-categories">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
-                            THỂ LOẠI
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Tình cảm</a></li>
-                            <li><a class="dropdown-item" href="#">Kinh dị</a></li>
-                        </ul>
-                    </li>
-                </ul>
                 <div class="search-box-navbar">
-                    <form id="search-form-navbar" class="input-group" action="#" method="post">
-                        <span class="input-group-text" id="basic-addon1">
-                            <i class="bi bi-search"></i>
-                        </span>
-                        <input type="text" class="search-input-navbar" id="search-input-navbar"
-                            placeholder="Tìm: tên phim, thể loại phim...">
-                    </form>
 
 
     <c:if test="${not empty sessionScope.User}">    
@@ -39,12 +21,6 @@
                             <i class="bi bi-person-fill"></i>
                         </div>
                         <ul class="dropdown-menu dropdown-menu-end">
-                            <li>
-                                <a class="dropdown-item" href="/account-info">
-                                    <i class="bi bi-person-fill"></i>
-                                    <span>Hồ sơ</span>
-                                </a>
-                            </li>
                             <li>
                                 <button type="button" data-bs-toggle="modal" data-bs-target="#logout-form-section"
                                     class="dropdown-item">

@@ -116,6 +116,15 @@ $("#upload-video-form").on("submit", async function (e) {
     }
 
     if (valid) {
+		let genresInput = document.querySelector('input[name="genres"]');
+    if (!genresInput) {
+        genresInput = document.createElement('input');
+        genresInput.type = 'hidden';
+        genresInput.name = 'genres';
+        form.appendChild(genresInput);
+    }
+    // Chuyển đổi mảng thành chuỗi các số nguyên cách nhau bởi dấu cách
+    genresInput.value = genresPicked.values.join(' ');
         form.submit()
     } else {
         toastr.error("Không thể đăng tải phim, vui lòng kiểm tra lại!")

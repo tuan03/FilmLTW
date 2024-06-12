@@ -11,7 +11,7 @@
 
     <main id="page-main">
         <div class="top-container">
-            <section class="video-player-n-episodes-list">
+            <section class="video-player-n-episodes-list" style='${selectedEpisode == null ? "display: none;": ""}'>
                 <!-- trình chơi video -->
                 <section class="video-player-section">
                     <div class="video-player-box">
@@ -96,6 +96,10 @@
                     </div>
                 </div>
             </section>
+
+
+
+
 
             <!-- section bình luận -->
             <section class="comment-section">

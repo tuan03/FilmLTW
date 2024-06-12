@@ -59,4 +59,6 @@ public class AdminController {
 	    model.addAttribute("movies",movies);
 	    return "admin";	
 	}
+	
+	
 }
