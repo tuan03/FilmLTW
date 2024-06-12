@@ -224,69 +224,99 @@
                 </div>
                 <div class="submit-btn-box">
                     <span></span>
-                    <button type="submit" class="update-btn">Cập nhật</button>
+                    <button type="submit" class="update-btn">Cập nhật thông tin phim</button>
                 </div>
             </form>
+        </section>
+
+        <section class="upload-new-episode-section">
+            <div class="section-title-box">
+                <h2 class="section-title">Thêm tập mới cho phim:</h2>
+            </div>
+            <div class="upload-new-episode-box">
+                <label for="upload-new-episode-input" class="upload-new-episode-btn">
+                    <span>Tải lên tập mới</span>
+                    <span>+</span>
+                </label>
+                <input type="file" accept="video/*" id="upload-new-episode-input" hidden />
+            </div>
+            <div class="upload-progress-bar"></div>
+            <div class="new-episode-title">
+                <input type="text" placeholder="Nhập tiêu đề cho tập mới ở đây..." />
+            </div>
         </section>
 
         <section class="episodes-section">
             <h2 class="section-title">DANH SÁCH TẬP</h2>
             <div class="total-videos">Tổng số: 12 tập</div>
             <div class="episodes-list">
-                <a class="episode" href="#">
+                <div class="episode">
                     <div class="episode-number">
                         <span class="value">1</span>
                     </div>
                     <div class="episode-info">
-                        <div class="episode-title active">Tập 1 - Ma cà rồng tự kỷ ra ngoài xã hội</div>
+                        <form class="episode-title active" action="#" method="post" onsubmit="updateEpisode(event)">
+                            <input type="text" value="Tập 1 - Ma cà rồng tự kỷ ra ngoài xã hội" name="new-title" />
+                        </form>
                         <div class="episode-views">27,160 lượt xem</div>
                     </div>
-                </a>
-                <a class="episode" href="#">
+                </div>
+                <div class="episode">
                     <div class="episode-number">
                         <span class="value">2</span>
                     </div>
                     <div class="episode-info">
-                        <div class="episode-title">Tập 2 - Bùng nổ hành động phản loạn</div>
+                        <form class="episode-title" action="#" method="post" onsubmit="updateEpisode(event)">
+                            <input type="text" value="Tập 2 - Bùng nổ hành động phản loạn" name="new-title" />
+                        </form>
                         <div class="episode-views">11,906 lượt xem</div>
                     </div>
-                </a>
-                <a class="episode" href="#">
+                </div>
+                <div class="episode">
                     <div class="episode-number">
                         <span class="value">3</span>
                     </div>
                     <div class="episode-info">
-                        <div class="episode-title">Tập 3 - Bóng tối của công chúa Ma cà rồng tự kỷ</div>
+                        <form class="episode-title" action="#" method="post" onsubmit="updateEpisode(event)">
+                            <input type="text" value="Tập 3 - Bóng tối của công chúa Ma cà rồng tự kỷ"
+                                name="new-title" />
+                        </form>
                         <div class="episode-views">10,046 lượt xem</div>
                     </div>
-                </a>
-                <a class="episode" href="#">
+                </div>
+                <div class="episode">
                     <div class="episode-number">
                         <span class="value">4</span>
                     </div>
                     <div class="episode-info">
-                        <div class="episode-title">Tập 4 - Có Hồng Tuất</div>
+                        <form class="episode-title" action="#" method="post" onsubmit="updateEpisode(event)">
+                            <input type="text" value="Tập 4 - Có Hồng Tuất" name="new-title" />
+                        </form>
                         <div class="episode-views">12,257 lượt xem</div>
                     </div>
-                </a>
-                <a class="episode" href="#">
+                </div>
+                <div class="episode">
                     <div class="episode-number">
                         <span class="value">5</span>
                     </div>
                     <div class="episode-info">
-                        <div class="episode-title">Tập 5 - Sakuna Memoir và các Thất Hồng Thiên</div>
+                        <form class="episode-title" action="#" method="post" onsubmit="updateEpisode(event)">
+                            <input type="text" value="Tập 5 - Sakuna Memoir và các Thất Hồng Thiên" name="new-title" />
+                        </form>
                         <div class="episode-views">10,880 lượt xem</div>
                     </div>
-                </a>
-                <a class="episode" href="#">
+                </div>
+                <div class="episode">
                     <div class="episode-number">
                         <span class="value">6</span>
                     </div>
                     <div class="episode-info">
-                        <div class="episode-title">Tập 6 - Hội nghị bàn tròn và những kẻ ác ẩn</div>
+                        <form class="episode-title" action="#" method="post" onsubmit="updateEpisode(event)">
+                            <input type="text" value="Tập 6 - Hội nghị bàn tròn và những kẻ ác ẩn" name="new-title" />
+                        </form>
                         <div class="episode-views">15,500 lượt xem</div>
                     </div>
-                </a>
+                </div>
             </div>
         </section>
     </main>

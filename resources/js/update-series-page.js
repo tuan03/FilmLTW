@@ -61,7 +61,121 @@ $("#update-series-form").on("submit", function (e) {
     const description = formData.get("series-description")
     console.log(">>> data before send to BE >>>", { title, description, genresPicked })
 
-    if (!title) {
-        $(this).find('')
-    }
+    form.submit()
 })
+
+const uploadNewEpisodeBox = document.querySelector(
+    ".upload-new-episode-section .upload-new-episode-box"
+)
+
+const renderProgressBar_failToUploadFile = ({ fileName }) => {
+    const uploadProgressContent_htmlString = `
+        <div class="upload-progress-details progress-fail" style="color: red;">
+            <i class="bi bi-exclamation-triangle-fill" style="color: red;"></i>
+            <span class="upload-progress-name">${fileName} • <strong>Tải lên thất bại</strong></span>
+        </div>`
+
+    uploadNewEpisodeBox.innerHTML = uploadProgressContent_htmlString
+}
+
+const renderProgressBar_fileUploaded = ({ fileName, fileLoaded, fileSize }) => {
+    const uploadProgressContent_htmlString = `
+        <div class="progress-box">
+            <div class="upload-progress-details">
+                <div style="display: flex; align-items: center; column-gap: 5px;">
+                    ${
+                        fileSize
+                            ? `
+                            <i class="bi bi-check-circle-fill" style="color: green;"></i>
+                            <div class="details">
+                                <span class="name">${fileName} • <strong>(Đã tải lên)</strong></span>
+                                <span class="size">${fileSize}</span>
+                            </div>`
+                            : `
+                            <i class="bi bi-cloud-arrow-up-fill"></i>
+                            <span class="upload-progress-name">${fileName} • <strong>Đang tải lên</strong></span>`
+                    }
+                </div>
+                <span class="upload-progress-percent">${fileLoaded}%</span>
+            </div>
+            <div class="upload-progress-bar">
+                <div class="upload-progress-animate" style="width: ${fileLoaded}%"></div>
+            </div>
+        </div> `
+
+    uploadNewEpisodeBox.innerHTML = uploadProgressContent_htmlString
+}
+
+const uploadFileOnDone = () => {}
+
+const MAX_CHARS_OF_FILE_NAME = 100
+
+const uploadFileHandler = (file) => {
+    let fileName = file.name
+    if (fileName.length >= MAX_CHARS_OF_FILE_NAME) {
+        const splitName = fileName.split(".")
+        fileName = splitName[0].substring(0, MAX_CHARS_OF_FILE_NAME + 1) + "... ." + splitName[1]
+    }
+
+    const xhr = new XMLHttpRequest()
+    xhr.open("POST", "/upload-doc", true)
+    xhr.upload.addEventListener("progress", ({ loaded, total }) => {
+        const fileLoaded = Math.floor((loaded / total) * 100)
+        const fileTotal = Math.floor(total / 1000)
+        let fileSize
+        fileTotal < 1024
+            ? (fileSize = fileTotal + " KB")
+            : (fileSize = (loaded / (1024 * 1024)).toFixed(2) + " MB")
+        renderProgressBar_fileUploaded({ fileLoaded, fileName })
+        if (loaded == total) {
+            renderProgressBar_fileUploaded({
+                fileName,
+                fileSize,
+                fileLoaded: 100,
+            })
+        }
+    })
+    xhr.addEventListener("load", () => {
+        const status = xhr.status
+        if (status >= 200 && status < 300) {
+            const { docInfo } = JSON.parse(xhr.responseText)
+            uploadFileOnDone({
+                id: docInfo.id,
+                pagesCount: docInfo.pagesCount,
+                name: docInfo.name,
+            })
+        } else {
+            renderProgressBar_failToUploadFile({ fileName })
+        }
+    })
+
+    const data = new FormData()
+    data.append("file", file)
+
+    xhr.send(data)
+}
+
+$("#upload-new-episode-input").on("change", function (e) {
+    const file = e.target.files[0]
+    uploadFileHandler(file)
+})
+
+const updateEpisode = (e) => {
+    e.preventDefault()
+    const form = e.target
+    const formData = new FormData(form)
+
+    const newTitle = formData.get("new-title")
+
+    let valid = true
+
+    if (!newTitle) {
+        valid = false
+    }
+
+    if (valid) {
+        form.submit()
+    } else {
+        toastr.warning("Không thể chỉnh sửa tập phim")
+    }
+}

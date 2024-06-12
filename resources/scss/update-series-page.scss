@@ -1,9 +1,13 @@
+@use "colors";
+@use "text-fonts";
+
 $avs-ep-active-cl: #00f4ff;
 $avs-ep-hover-cl: #ff2525;
 $avs-scrollbar-on-hover-cl: #999999;
 $avs-scrollbar-on-blur-cl: #99999955;
 $avs-series-info-bg-cl: #383838;
 $avs-series-info-regular-witdh: 880px;
+$avs-form-bg-cl: #f0f0f0;
 
 @mixin hover-to-update-styling {
     border: 1px transparent solid;
@@ -44,6 +48,21 @@ $avs-series-info-regular-witdh: 880px;
     }
 }
 
+@mixin section-title-box-styling {
+    display: flex;
+    column-gap: 20px;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #555;
+    padding-bottom: 5px;
+    margin-bottom: 10px;
+    padding-left: 10px;
+
+    .section-title {
+        font-size: 24px;
+    }
+}
+
 #page-main {
     padding: 20px;
 
@@ -51,18 +70,7 @@ $avs-series-info-regular-witdh: 880px;
         color: white;
 
         .section-title-box {
-            display: flex;
-            column-gap: 20px;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px solid #555;
-            padding-bottom: 5px;
-            margin-bottom: 10px;
-            padding-left: 10px;
-
-            .section-title {
-                font-size: 24px;
-            }
+            @include section-title-box-styling;
         }
 
         .series-info {
@@ -216,6 +224,111 @@ $avs-series-info-regular-witdh: 880px;
         }
     }
 
+    .upload-new-episode-section {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 30px;
+        color: white;
+
+        .section-title-box {
+            @include section-title-box-styling;
+            width: 100%;
+        }
+
+        .new-episode-title {
+            width: 50%;
+            margin-bottom: 20px;
+            margin-top: 10px;
+
+            input {
+                width: 100%;
+                padding: 5px 20px;
+                border-radius: 5px;
+            }
+        }
+
+        .upload-new-episode-box {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            width: 100%;
+
+            .upload-new-episode-btn {
+                display: flex;
+                flex-direction: column;
+                row-gap: 10px;
+                align-items: center;
+                text-transform: uppercase;
+                color: white;
+                font-size: 2rem;
+                padding: 50px 100px;
+                border: 5px white dashed;
+                border-radius: 10px;
+                font-weight: bold;
+                cursor: pointer;
+
+                &:hover {
+                    background-color: white;
+                    color: $avs-series-info-bg-cl;
+                    background-clip: padding-box;
+                }
+            }
+
+            .progress-box {
+                width: 100%;
+                background-color: colors.$avs-regular-bg-cl;
+                padding: 15px 20px;
+                margin-top: 10px;
+
+                & .upload-progress-details {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    justify-content: space-between;
+                    margin-bottom: 7px;
+                    column-gap: 10px;
+
+                    &.progress-fail {
+                        color: red;
+                        margin-bottom: 0;
+                        justify-content: initial;
+
+                        & i {
+                            color: red;
+                        }
+                    }
+
+                    & i {
+                        display: flex;
+                        color: colors.$avs-primary-cl;
+                        font-size: 1.1rem;
+                    }
+                }
+
+                & .upload-progress-bar {
+                    height: 10px;
+                    width: 100%;
+                    margin-bottom: 4px;
+                    background-color: white;
+                    border-radius: 30px;
+                    background-image: url("../img/bg-process-bar.png");
+                    background-repeat: repeat-x;
+                    background-size: contain;
+
+                    & .upload-progress-animate {
+                        height: 100%;
+                        width: 0%;
+                        background-color: colors.$avs-primary-cl;
+                        border-radius: inherit;
+                    }
+                }
+            }
+        }
+    }
+
     .episodes-section {
         border: 1px #555454 solid;
         color: white;
@@ -272,11 +385,33 @@ $avs-series-info-regular-witdh: 880px;
                     width: 100%;
 
                     .episode-title {
+                        display: flex;
                         font-size: 14px;
                         font-weight: bold;
                         margin-bottom: 5px;
-                        white-space: pre-wrap;
+                        margin-top: 2px;
                         width: 100%;
+                        column-gap: 10px;
+
+                        input {
+                            background-color: transparent;
+                            color: white;
+                            width: 100%;
+
+                            &:hover {
+                                color: $avs-ep-active-cl;
+                            }
+                        }
+
+                        span {
+                            &:hover {
+                                transform: scale(1.2);
+                            }
+
+                            i {
+                                color: #35ff35;
+                            }
+                        }
 
                         &.active {
                             color: $avs-ep-active-cl;
